@@ -1,4 +1,6 @@
-﻿/* Estilização básica para modais */
+﻿/* ======================
+   Estilização para Modais
+========================== */
 .modal {
     display: none;
     position: fixed;
@@ -31,7 +33,9 @@
     to { opacity: 1; transform: scale(1); }
 }
 
-/* Estilo do corpo e layout básico */
+/* ======================
+   Estilo do Corpo e Layout Básico
+========================== */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
@@ -51,7 +55,9 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
-/* Estilo da navbar */
+/* ======================
+   Navbar e Menu de Navegação
+========================== */
 .navbar {
     background-color: #2C3E50;
     padding: 10px 20px;
@@ -85,25 +91,24 @@ h1, h2, h3, h4, h5, h6 {
     color: #ECF0F1;
 }
 
-/* Formulários */
+/* ======================
+   Estilo de Formulários e Botões
+========================== */
 .form-control {
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 1rem; /* Aumentado para tornar o texto mais legível */
     padding: 10px;
-    font-size: 1rem;
 }
 
-.form-control:focus {
-    border-color: #3498DB;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+.form-control-sm {
+    font-size: 1rem; /* Aumentado para o campo de texto menor */
 }
 
-/* Botões */
+.form-group label {
+    font-size: 1.1rem; /* Aumenta o tamanho do rótulo para melhor legibilidade */
+}
+
 .btn {
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem; /* Aumentado o tamanho da fonte do botão */
 }
 
 .btn-primary {
@@ -133,7 +138,9 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #707B7C;
 }
 
-/* Texto de sucesso e erro */
+/* ======================
+   Estilos de Texto e Efeitos de Erro
+========================== */
 .correct {
     color: #2ECC71;
     font-weight: bold;
@@ -158,7 +165,9 @@ h1, h2, h3, h4, h5, h6 {
     100% { transform: translateX(0); }
 }
 
-/* Estilo do footer */
+/* ======================
+   Estilização do Footer
+========================== */
 footer {
     background-color: #2C3E50;
     color: #ECF0F1;
@@ -171,7 +180,9 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Estilos responsivos */
+/* ======================
+   Responsividade
+========================== */
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
@@ -184,9 +195,17 @@ footer p {
     .container {
         padding: 10px;
     }
+
+    .flash-container {
+        top: 10px;
+        right: 10px;
+        max-width: 300px;
+    }
 }
 
-/* Estilo de tabelas */
+/* ======================
+   Estilo de Tabelas
+========================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -208,16 +227,22 @@ table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* Transições suaves para interações */
+/* ======================
+   Transições Suaves para Interações
+========================== */
 * {
     transition: all 0.3s ease;
 }
 
-/* Estilização básica para o formulário de login */
+/* ======================
+   Estilização do Formulário de Login
+========================== */
 .card {
-    border: none;
+    width: 100%;
+    max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 .card-body {
@@ -277,32 +302,80 @@ h3 {
     text-decoration: underline;
 }
 
-.alert-info {
-    background-color: #d9edf7;
-    color: #31708f;
-    border-color: #bce8f1;
-    font-size: 1.1rem;
-    padding: 15px;
-    border-radius: 5px;
+/* ======================
+   Flash Messages
+========================== */
+.flash-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;   /* Posiciona o centro do container no meio da tela */
+    transform: translateX(-50%);  /* Move o container para a esquerda em 50% de sua largura, centralizando-o */
+    z-index: 1050;
+    max-width: 350px;
 }
 
-.table-striped tbody tr.table-success {
+/* Estilização customizada para flash messages */
+.custom-alert {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: slideDown 0.9s forwards;
+}
+
+/* Ajuste para a transição de desaparecimento suave */
+.custom-alert.fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transição de 1 segundo para suavidade */
+}
+
+/* Ícones personalizados para as flash messages */
+.custom-alert .fas {
+    font-size: 1.5rem;
+}
+
+/* Cores e ícones baseados nas categorias de mensagens */
+.alert-success {
     background-color: #d4edda;
+    color: #155724;
 }
 
-.alert-info {
-    background-color: #d9edf7;
-    color: #31708f;
-    border-color: #bce8f1;
-    font-size: 1.1rem;
-    padding: 15px;
-    border-radius: 5px;
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
-.table {
-    margin-top: 20px;
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
 }
 
-.table th, .table td {
-    text-align: center;
+/* Animação para exibir as flash messages */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-alert .close {
+    font-size: 1rem;  /* Reduz o tamanho da fonte para deixá-lo menor */
+    color: #333;
+    cursor: pointer;
+    padding: 0;  /* Remove o espaçamento extra */
+    margin-left: 10px; /* Ajusta a distância do ícone de fechar */
+}
+
+
+.custom-alert .close:hover {
+    color: #555; /* Alteração de cor ao passar o mouse */
 }
