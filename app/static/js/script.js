@@ -18,8 +18,23 @@
     let isBlocked = false;  // Flag para bloquear o teclado após erro
     let isComposing = false;  // Verifica se o usuário está digitando um caractere acentuado
 
-    // Carrega o primeiro texto
-    fetchNextText(currentIndex);
+    // Função para carregar o último texto salvo ou iniciar o próximo texto
+    fetchLastTextId();
+
+    // Função para obter o último texto salvo do backend
+    function fetchLastTextId() {
+        fetch('/get_last_text_id')
+            .then(response => response.json())
+            .then(data => {
+                if (data.last_text_id !== undefined) {
+                    currentIndex = data.last_text_id + 1;  // Continua a partir do próximo texto
+                    fetchNextText(currentIndex);  // Carrega o próximo texto
+                } else {
+                    fetchNextText(currentIndex);  // Caso contrário, inicia do primeiro texto
+                }
+            })
+            .catch(error => console.error("Erro ao carregar o último texto salvo:", error));
+    }
 
     // Função para carregar o próximo texto
     function fetchNextText(index) {

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request, session, current_app
-from .texts import get_ordered_text
+from .texts import get_next_uncompleted_text
 from .auth import login_required
 
 main = Blueprint('main', __name__)
@@ -40,13 +40,21 @@ def treinamento():
 @main.route('/get_text')
 @login_required
 def get_text():
-    index = int(request.args.get('index', 0))  # Obtém o índice do texto
-    text_data = get_ordered_text(index)  # Obtém o texto a partir da função no texts.py
-    if text_data:
-        return jsonify(text=text_data['text'], id=text_data['id'])  # Retorna texto e ID
-    else:
-        return jsonify(error="Texto não encontrado"), 404  # Retorna erro caso o índice seja inválido
+    db = current_app.config['db']
+    user = session.get('user')
 
+    # Recupera o usuário e os textos já completados
+    user_data = db.users.find_one({'email': user})
+    completed_text_ids = user_data.get('completed_text_ids', [])
+
+    # Obtém o próximo texto que o usuário ainda não completou
+    next_text_data = get_next_uncompleted_text(completed_text_ids)
+    
+    if next_text_data:
+        return jsonify(text=next_text_data['text'], id=next_text_data['id'])  # Retorna texto e ID
+    else:
+        return jsonify(error="Todos os textos foram completados!"), 200
+    
 # Rota para a página "Sobre" (apenas para usuários logados)
 @main.route('/sobre')
 @login_required
@@ -59,7 +67,7 @@ def about():
 def contato():
     return render_template('contato.html')
 
-# Rota para salvar a pontuação do usuário (apenas para usuários logados)
+# Rota para salvar a pontuação do usuário e registrar o texto completado
 @main.route('/save_score', methods=['POST'])
 @login_required
 def save_score():
@@ -72,15 +80,18 @@ def save_score():
     logged_in_user = session.get('user')
     
     if logged_in_user and score is not None and text_id is not None:
-        # Atualiza a pontuação e o texto em que o usuário parou
+        # Atualizar o usuário no banco de dados com o texto completado e a pontuação
         db.users.update_one(
             {'email': logged_in_user},
-            {'$set': {'score': score, 'last_text_id': text_id}}  # Salva a pontuação e o último texto
+            {
+                '$set': {'score': score, 'last_text_id': text_id},
+                '$addToSet': {'completed_text_ids': text_id}  # Adiciona o texto ao conjunto de textos completados
+            }
         )
         return jsonify({'message': 'Pontuação e texto salvos com sucesso!'}), 200
     else:
         return jsonify({'error': 'Dados inválidos'}), 400
-
+    
 @main.route('/progresso')
 @login_required
 def progresso():

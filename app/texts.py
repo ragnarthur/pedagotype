@@ -49,10 +49,10 @@ TEXTS = sorted([
     {"id": 47, "text": "A formação de professores em tecnologias digitais tem se mostrado um fator chave para a modernização do ensino."}
 ], key=lambda x: len(x['text']))  # Ordena os textos pelo tamanho
 
-# Função para obter o próximo texto em ordem
-def get_ordered_text(index):
-    """Retorna o texto e o ID na posição especificada pela ordem de dificuldade"""
-    if index < len(TEXTS):
-        return TEXTS[index]
-    else:
-        return None  # Se o índice exceder o número de textos, retorna None
+# Função para obter o próximo texto não repetido
+def get_next_uncompleted_text(completed_text_ids):
+    """Retorna o próximo texto que não foi completado ainda"""
+    for text in TEXTS:
+        if text['id'] not in completed_text_ids:
+            return text
+    return None  # Se todos os textos foram completados
