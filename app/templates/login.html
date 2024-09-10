@@ -17,10 +17,10 @@
                     <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Digite sua senha" required style="border-radius: 5px; font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
                 </div>
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-block" style="border-radius: 5px; font-size: 1.1rem;">Entrar</button> <!-- Aumentada a fonte do botão -->
+                    <button type="submit" class="btn btn-primary btn-block" style="border-radius: 5px; font-size: 1.2em;">Entrar</button> <!-- Aumentada a fonte do botão -->
                 </div>
                 <div class="text-center mt-3">
-                    <small>Não tem uma conta? <a href="{{ url_for('auth.register') }}">Cadastre-se</a></small> <!-- Mantido o estilo atual do link -->
+                    <small style="font-size: 1.0rem;">Não tem uma conta? <a href="{{ url_for('auth.register') }}" style="font-size: 1.1rem;">Cadastre-se</a></small> <!-- Aumentado o tamanho da frase e do link -->
                 </div>
             </form>
         </div>
