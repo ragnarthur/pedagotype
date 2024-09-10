@@ -4,32 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PedagoType - Treinamento de Digitação</title>
-    <!-- Link para o CSS correto -->
+    <title>{% block title %}PedagoType{% endblock %}</title>
+    <!-- Link do CSS do Bootstrap via CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Seu CSS personalizado -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <!-- Navbar com Bootstrap -->
     <header>
-        <nav>
-            <h1>PedagoType</h1>
-            <ul>
-                <li><a href="{{ url_for('main.index') }}">Início</a></li>
-                <li><a href="{{ url_for('main.start_typing') }}">Começar Treinamento</a></li>
-                <li><a href="{{ url_for('main.about') }}">Sobre</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">PedagoType</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.treinamento') }}">Treinamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.about') }}">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.contato') }}">Contato</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section class="content">
-            {% block content %}
-            <!-- O conteúdo específico de cada página será inserido aqui -->
-            {% endblock %}
-        </section>
+    <!-- Conteúdo principal -->
+    <main class="container mt-4">
+        {% block content %}
+        <!-- O conteúdo específico da página será inserido aqui -->
+        {% endblock %}
     </main>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-3 mt-4">
         <p>&copy; 2024 PedagoType. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Bootstrap JS e dependências -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Scripts globais -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

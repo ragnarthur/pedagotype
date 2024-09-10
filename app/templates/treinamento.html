@@ -1,0 +1,72 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Treinamento - PedagoType{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">Treinamento de Digitação</h2>
+
+    <!-- Exibição do texto para digitação -->
+    <div id="text-container" class="border p-3 mb-4">
+        <p id="text" data-current-index="0" class="lead">Carregando texto...</p>
+    </div>
+
+    <!-- Campo de entrada para digitação -->
+    <div class="form-group">
+        <input type="text" id="input" class="form-control" placeholder="Digite aqui o texto acima..." autocomplete="off">
+    </div>
+
+    <!-- Exibição de resultados -->
+    <div id="result" class="mb-4">
+        <p>Pontuação Atual: <span id="current-score">0</span></p>
+        <p>Pontuação Total: <span id="total-score">0</span></p>
+        <p id="final-score"></p>
+    </div>
+
+    <!-- Botões para enviar e continuar -->
+    <div class="d-flex justify-content-between">
+        <button id="submit-score-btn" class="btn btn-success" style="display: none;">Enviar Pontuação</button>
+        <button id="next-text-btn" class="btn btn-primary">Próximo Texto</button>
+    </div>
+
+    <!-- Modal de Parabéns -->
+    <div class="modal fade" id="congratsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Parabéns!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Você concluiu este texto com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modal-next-text-btn">Próximo Texto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Conclusão Final -->
+    <div class="modal fade" id="finalModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Treinamento Concluído!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Sua pontuação final é: <span id="final-total-score"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="repeat-btn">Recomeçar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
