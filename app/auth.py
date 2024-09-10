@@ -37,23 +37,27 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+        email = request.form.get('email')
+        password = request.form.get('password')
+        name = request.form.get('name')  # Adiciona o campo 'name' ao formulário
 
         db = current_app.config['db']
+        
+        # Verifica se o usuário já existe
         existing_user = db.users.find_one({'email': email})
-
-        if existing_user:
-            flash('Este e-mail já está cadastrado. Tente fazer login.')
+        
+        if existing_user is None:
+            # Cria o hash da senha e insere o novo usuário com o nome, email e senha
+            hashed_password = generate_password_hash(password, method='scrypt')
+            db.users.insert_one({
+                'email': email,
+                'password': hashed_password,
+                'name': name  # Adiciona o nome durante o registro
+            })
+            flash('Usuário cadastrado com sucesso! Faça login.')
             return redirect(url_for('auth.login'))
-
-        # Criptografa a senha e insere no banco
-        hashed_password = generate_password_hash(password)
-        db.users.insert_one({'email': email, 'password': hashed_password})
-
-        flash('Cadastro realizado com sucesso! Faça login para continuar.')
-        return redirect(url_for('auth.login'))
-
+        
+        flash('O email já está cadastrado.')
     return render_template('register.html')
 
 # Rota de Logout

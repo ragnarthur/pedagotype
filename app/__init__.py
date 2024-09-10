@@ -1,7 +1,7 @@
-import os
 from flask import Flask
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import os
 
 def create_app():
     load_dotenv()
@@ -16,17 +16,20 @@ def create_app():
     mongo = MongoClient(mongo_url)
     db = mongo[mongo_database]
 
-    # Usar um contexto global para o db no app
-    app.config['db'] = db  # Passa o db via configuração global
+    # Passa o db via configuração global
+    app.config['db'] = db
 
-    # Importar e registrar blueprints após a criação do app
+    # Filtro para converter quebras de linha em <br> no HTML
+    @app.template_filter('nl2br')
+    def nl2br_filter(s):
+        return s.replace("\n", "<br>\n")
+
+    # Importar as rotas
     from .routes import main
-    from .api import api  # Importa a API existente
-    from .auth import auth  # Importa a blueprint de autenticação
+    from .auth import auth
 
-    # Registrar as blueprints
+    # Registrar blueprints
     app.register_blueprint(main)
-    app.register_blueprint(api)
-    app.register_blueprint(auth)  # Registrar a blueprint de autenticação
+    app.register_blueprint(auth)
 
     return app

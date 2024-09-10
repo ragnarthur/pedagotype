@@ -1,0 +1,12 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Bem-vindo - PedagoType{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">Bem-vindo ao PedagoType!</h2>
+    <div class="alert alert-info text-center">
+        {{ welcome_message | nl2br | safe }}
+    </div>
+</div>
+{% endblock %}

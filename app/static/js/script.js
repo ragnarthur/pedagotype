@@ -1,23 +1,21 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const textElement = document.getElementById("text");
     const inputElement = document.getElementById("input");
+    const modalElement = document.getElementById("scoreModal"); // Modal de pontuação
     const modalCurrentScoreElement = document.getElementById("modal-current-score");
 
     const resultElement = document.getElementById("result");
-    const finalScoreElement = document.getElementById("final-score");
+
     const totalScoreElement = document.getElementById("total-score");
     const currentScoreElement = document.getElementById("current-score");
-    const nextTextBtn = document.getElementById("next-text-btn");
 
     let currentIndex = 0;
+    let currentTextId = null;  // Armazena o ID do texto atual
     let startTime = null;
-    let timerInterval = null;
     let totalScore = 0;
     let currentScore = 0;
     let errorOccurred = false;
     let isBlocked = false;  // Flag para bloquear o teclado após erro
-
-    // Variáveis para acentos
     let isComposing = false;  // Verifica se o usuário está digitando um caractere acentuado
 
     // Carrega o primeiro texto
@@ -28,13 +26,18 @@
         fetch(`/get_text?index=${index}`)
             .then(response => response.json())
             .then(data => {
-                textElement.innerText = data.text;  // Define o texto no HTML
-                inputElement.value = '';  // Limpa o campo de entrada
-                resultElement.innerText = '';
-                startTime = null;
-                errorOccurred = false;  // Reinicia o estado de erro
-                isBlocked = false;  // Desbloqueia o teclado
-                updateDisplayedText('');  // Limpa o texto exibido
+                if (data && data.text) {
+                    textElement.innerText = data.text;  // Define o texto corretamente no HTML
+                    currentTextId = data.id;  // Salva o ID do texto carregado
+                    inputElement.value = '';  // Limpa o campo de entrada
+                    modalElement.style.display = 'none';  // Esconde o modal
+                    startTime = null;
+                    errorOccurred = false;  // Reinicia o estado de erro
+                    isBlocked = false;  // Desbloqueia o teclado
+                    updateDisplayedText('');  // Limpa o texto exibido
+                } else {
+                    console.error("Erro: O texto não foi encontrado.");
+                }
             })
             .catch(error => console.error("Erro ao carregar o texto:", error));
     }
@@ -64,13 +67,35 @@
             updateDisplayedText(inputText);  // Atualiza o texto exibido
         }
 
-        // Se o texto for digitado corretamente
+        // Se o texto for digitado corretamente e completamente
         if (inputText === originalText && !errorOccurred) {
             clearInterval(timerInterval);  // Para o timer
             calculateScore(inputText, originalText);  // Calcula a pontuação
-            showCongratsModal();  // Exibe o modal de parabéns
+            saveScoreAndText();  // Salva a pontuação e o texto no banco de dados
         }
     });
+
+    // Função para salvar a pontuação e o texto no banco de dados
+    function saveScoreAndText() {
+        const data = {
+            score: currentScore,
+            text_id: currentTextId  // Envia o ID do texto atual
+        };
+
+        fetch('/save_score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            showScoreModal();  // Exibe o modal de pontuação
+        })
+        .catch(error => console.error("Erro ao salvar a pontuação:", error));
+    }
 
     // Função para detectar se o usuário está digitando um caractere composto (acentuado)
     inputElement.addEventListener('compositionstart', function () {
@@ -119,19 +144,19 @@
 
         currentScoreElement.innerText = currentScore;
         totalScoreElement.innerText = totalScore;
-        modalCurrentScoreElement.innerText = currentScore;  // Atualiza pontuação no modal
+        modalCurrentScoreElement.innerText = currentScore;  // Exibe a pontuação no modal
     }
 
-    // Função para exibir o modal de parabéns
-    function showCongratsModal() {
-        $('#congratsModal').modal('show');  // Exibe o modal
-    }
+    // Função para exibir o modal de pontuação
+    function showScoreModal() {
+        modalElement.style.display = 'block';  // Exibe o modal
 
-    // Evento para o botão no modal para carregar o próximo texto
-    nextTextBtn.addEventListener('click', function () {
-        $('#congratsModal').modal('hide');  // Fecha o modal
-        fetchNextText(++currentIndex);  // Carrega o próximo texto
-    });
+        // Fecha o modal automaticamente e carrega o próximo texto
+        setTimeout(function () {
+            modalElement.style.display = 'none';  // Esconde o modal
+            fetchNextText(++currentIndex);  // Carrega o próximo texto
+        }, 3000);  // Exibe o modal por 3 segundos
+    }
 
     // Inicia o timer quando o usuário começa a digitar
     inputElement.addEventListener("input", function () {
