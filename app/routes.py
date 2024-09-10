@@ -7,32 +7,19 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @login_required
 def index():
-    welcome_message = """
-    Bem-vindo ao PedagoType!
+    return render_template('index.html')
 
-    O PedagoType é um aplicativo inovador desenvolvido para unir o aprendizado de conceitos pedagógicos com a prática de digitação. 
-    Nossa plataforma foi criada para auxiliar alunos e educadores a aprimorarem suas habilidades de digitação de maneira prática e educativa.
-
-    Ao utilizar o PedagoType, você terá a oportunidade de:
-    - Aprimorar sua velocidade e precisão na digitação
-    - Aprender enquanto digita
-    - Acompanhar seu progresso
-    - Desafiar-se continuamente
-    - Engajar-se em um ambiente interativo e motivador
-
-    Escolha uma das opções no menu para iniciar seu treinamento. Explore todas as funcionalidades que o PedagoType oferece e descubra uma nova forma de aprender e se aprimorar.
-    """
-    return render_template('index.html', welcome_message=welcome_message)
-
-# Rota para o treinamento (apenas para usuários logados)
+# Rota de Treinamento (treinamento.html)
 @main.route('/treinamento')
 @login_required
 def treinamento():
     db = current_app.config['db']
     user = session.get('user')
+    
+    # Verifica se o usuário tem um last_text_id salvo no banco de dados
     user_data = db.users.find_one({'email': user})
+    last_text_id = user_data.get('last_text_id', 0)  # Se não houver, começa do texto 0
 
-    last_text_id = user_data.get('last_text_id', 0)  # Último texto salvo
     return render_template('treinamento.html', last_text_id=last_text_id)
 
 

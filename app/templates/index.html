@@ -3,10 +3,20 @@
 {% block title %}Bem-vindo - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center my-4">Bem-vindo ao PedagoType!</h2>
-    <div class="alert alert-info text-center">
-        {{ welcome_message | nl2br | safe }}
+<div class="container text-center">
+    <h2 class="my-4 animated-title">Bem-vindo ao <span style="color: #1ABC9C;">PedagoType</span>!</h2>
+    <div class="welcome-box shadow-lg p-5 mb-4">
+        <p class="lead fade-in">O <strong>PedagoType</strong> é um aplicativo inovador desenvolvido para unir o aprendizado de conceitos pedagógicos com a prática de digitação.</p>
+        <p class="mb-4 fade-in delay-1">Nossa plataforma foi criada para auxiliar alunos e educadores a aprimorarem suas habilidades de digitação de maneira prática e educativa.</p>
+        <ul class="text-left feature-list fade-in delay-2">
+            <li><i class="fas fa-check-circle"></i> Aprimorar sua velocidade e precisão na digitação</li>
+            <li><i class="fas fa-check-circle"></i> Aprender enquanto digita</li>
+            <li><i class="fas fa-check-circle"></i> Acompanhar seu progresso</li>
+            <li><i class="fas fa-check-circle"></i> Desafiar-se continuamente</li>
+            <li><i class="fas fa-check-circle"></i> Engajar-se em um ambiente interativo e motivador</li>
+        </ul>
+        <p class="fade-in delay-3">Escolha uma das opções no menu para iniciar seu treinamento. Explore todas as funcionalidades que o <strong>PedagoType</strong> oferece e descubra uma nova forma de aprender e se aprimorar.</p>
+        <a href="{{ url_for('main.treinamento') }}" class="btn btn-primary btn-lg pulse-button mt-4">Comece Agora</a>
     </div>
 </div>
 {% endblock %}

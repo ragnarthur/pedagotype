@@ -9,7 +9,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user' not in session:
-            flash('Você precisa estar logado para acessar essa página.')
+            flash('Você precisa estar logado para acessar essa página.', 'warning')
             return redirect(url_for('auth.login'))
         return f(*args, **kwargs)
     return decorated_function
@@ -26,9 +26,10 @@ def login():
 
         if user and check_password_hash(user['password'], password):
             session['user'] = user['email']  # Salva o email na sessão
+            flash('Login efetuado com sucesso!', 'success')  # Flash de sucesso
             return redirect(url_for('main.index'))
         else:
-            flash('Login inválido. Verifique suas credenciais.')
+            flash('Login inválido. Verifique suas credenciais.', 'danger')  # Flash de erro
             return redirect(url_for('auth.login'))
 
     return render_template('login.html')
@@ -54,10 +55,10 @@ def register():
                 'password': hashed_password,
                 'name': name  # Adiciona o nome durante o registro
             })
-            flash('Usuário cadastrado com sucesso! Faça login.')
+            flash('Usuário cadastrado com sucesso! Faça login.', 'success')  # Flash de sucesso
             return redirect(url_for('auth.login'))
         
-        flash('O email já está cadastrado.')
+        flash('O email já está cadastrado.', 'danger')  # Flash de erro
     return render_template('register.html')
 
 # Rota de Logout
@@ -65,5 +66,5 @@ def register():
 @login_required
 def logout():
     session.pop('user', None)
-    flash('Você saiu com sucesso.')
+    flash('Você saiu com sucesso.', 'success')  # Flash de sucesso ao sair
     return redirect(url_for('auth.login'))

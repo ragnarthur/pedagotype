@@ -4,23 +4,23 @@
 
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card shadow-lg" style="width: 400px; border-radius: 10px;">
+    <div class="card shadow-lg" style="width: 500px; border-radius: 10px;">
         <div class="card-body">
-            <h3 class="text-center mb-4">Login</h3>
+            <h3 class="text-center mb-4" style="font-size: 1.5rem;">Login</h3> <!-- Aumentado o tamanho da fonte do título -->
             <form method="POST" action="{{ url_for('auth.login') }}">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Digite seu email" required style="border-radius: 5px;">
+                    <label for="email" style="font-size: 1.1rem;">Email</label> <!-- Aumentado o tamanho da fonte do rótulo -->
+                    <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Digite seu email" required style="border-radius: 5px; font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
                 </div>
                 <div class="form-group mt-3">
-                    <label for="password">Senha</label>
-                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Digite sua senha" required style="border-radius: 5px;">
+                    <label for="password" style="font-size: 1.1rem;">Senha</label> <!-- Aumentado o tamanho da fonte do rótulo -->
+                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Digite sua senha" required style="border-radius: 5px; font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
                 </div>
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-block" style="border-radius: 5px;">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block" style="border-radius: 5px; font-size: 1.1rem;">Entrar</button> <!-- Aumentada a fonte do botão -->
                 </div>
                 <div class="text-center mt-3">
-                    <small>Não tem uma conta? <a href="{{ url_for('auth.register') }}">Cadastre-se</a></small>
+                    <small>Não tem uma conta? <a href="{{ url_for('auth.register') }}">Cadastre-se</a></small> <!-- Mantido o estilo atual do link -->
                 </div>
             </form>
         </div>

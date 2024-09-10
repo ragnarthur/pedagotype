@@ -1,4 +1,137 @@
-﻿/* Estilização básica para modais */
+﻿/* ======================
+   Estilo da página inicial com efeitos especiais
+========================== */
+
+.animated-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #2C3E50;
+    animation: slideInFromLeft 1.2s ease-out forwards;
+}
+
+.welcome-box {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    border-left: 5px solid #1ABC9C;
+    padding: 30px;
+    text-align: left;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.welcome-box:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-box p {
+    font-size: 1.2rem;
+    color: #2C3E50;
+    transition: color 0.3s ease;
+}
+
+.welcome-box:hover p {
+    color: #1ABC9C;
+}
+
+.welcome-box .feature-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.welcome-box .feature-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #2C3E50;
+    transition: transform 0.3s ease;
+}
+
+.welcome-box .feature-list li i {
+    color: #1ABC9C;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.welcome-box .feature-list li:hover {
+    transform: scale(1.05);
+}
+
+.welcome-box strong {
+    color: #1ABC9C;
+}
+
+/* Efeito de botão com pulso */
+.pulse-button {
+    background-color: #1ABC9C;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+.pulse-button:hover {
+    background-color: #16A085;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 30px rgba(26, 188, 156, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
+    }
+}
+
+/* Animações para fade e slide */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade-in para elementos */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+
+.fade-in.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.fade
+
+
+
+/* ======================
+   Estilização para Modais
+========================== */
 .modal {
     display: none;
     position: fixed;
@@ -31,7 +164,9 @@
     to { opacity: 1; transform: scale(1); }
 }
 
-/* Estilo do corpo e layout básico */
+/* ======================
+   Estilo do Corpo e Layout Básico
+========================== */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
@@ -51,30 +186,52 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
-/* Estilo da navbar */
+/* ======================
+   Navbar e Menu de Navegação
+========================== */
 .navbar {
     background-color: #2C3E50;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999; /* Garante que a navbar fique no topo */
 }
 
 .navbar-brand {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Aumentado o tamanho da marca */
     font-weight: 700;
     color: #ECF0F1;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #1ABC9C; /* Adiciona uma cor de destaque ao passar o mouse */
 }
 
 .navbar-nav .nav-link {
     color: #ECF0F1;
     font-size: 1.2rem;
     margin-right: 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    padding: 10px 15px; /* Melhor espaçamento ao redor do link */
+    border-radius: 5px;
 }
 
 .navbar-nav .nav-link:hover {
     background-color: #1ABC9C;
     color: white;
     border-radius: 5px;
+    transform: scale(1.05); /* Pequeno zoom ao passar o mouse */
+}
+
+.navbar-nav .nav-link.active {
+    background-color: #1ABC9C;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-toggler {
@@ -85,25 +242,39 @@ h1, h2, h3, h4, h5, h6 {
     color: #ECF0F1;
 }
 
-/* Formulários */
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-link {
+        margin: 5px 0;
+    }
+}
+
+
+/* ======================
+   Estilo de Formulários e Botões
+========================== */
 .form-control {
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 1rem; /* Aumentado para tornar o texto mais legível */
     padding: 10px;
-    font-size: 1rem;
 }
 
-.form-control:focus {
-    border-color: #3498DB;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+.form-control-sm {
+    font-size: 1rem; /* Aumentado para o campo de texto menor */
 }
 
-/* Botões */
+.form-group label {
+    font-size: 1.1rem; /* Aumenta o tamanho do rótulo para melhor legibilidade */
+}
+
 .btn {
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem; /* Aumentado o tamanho da fonte do botão */
 }
 
 .btn-primary {
@@ -133,7 +304,9 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #707B7C;
 }
 
-/* Texto de sucesso e erro */
+/* ======================
+   Estilos de Texto e Efeitos de Erro
+========================== */
 .correct {
     color: #2ECC71;
     font-weight: bold;
@@ -158,7 +331,9 @@ h1, h2, h3, h4, h5, h6 {
     100% { transform: translateX(0); }
 }
 
-/* Estilo do footer */
+/* ======================
+   Estilização do Footer
+========================== */
 footer {
     background-color: #2C3E50;
     color: #ECF0F1;
@@ -171,7 +346,9 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Estilos responsivos */
+/* ======================
+   Responsividade
+========================== */
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
@@ -184,9 +361,17 @@ footer p {
     .container {
         padding: 10px;
     }
+
+    .flash-container {
+        top: 10px;
+        right: 10px;
+        max-width: 300px;
+    }
 }
 
-/* Estilo de tabelas */
+/* ======================
+   Estilo de Tabelas
+========================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -208,16 +393,22 @@ table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* Transições suaves para interações */
+/* ======================
+   Transições Suaves para Interações
+========================== */
 * {
     transition: all 0.3s ease;
 }
 
-/* Estilização básica para o formulário de login */
+/* ======================
+   Estilização do Formulário de Login
+========================== */
 .card {
-    border: none;
+    width: 100%;
+    max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 .card-body {
@@ -277,32 +468,80 @@ h3 {
     text-decoration: underline;
 }
 
-.alert-info {
-    background-color: #d9edf7;
-    color: #31708f;
-    border-color: #bce8f1;
-    font-size: 1.1rem;
-    padding: 15px;
-    border-radius: 5px;
+/* ======================
+   Flash Messages
+========================== */
+.flash-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;   /* Posiciona o centro do container no meio da tela */
+    transform: translateX(-50%);  /* Move o container para a esquerda em 50% de sua largura, centralizando-o */
+    z-index: 1050;
+    max-width: 350px;
 }
 
-.table-striped tbody tr.table-success {
+/* Estilização customizada para flash messages */
+.custom-alert {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: slideDown 0.9s forwards;
+}
+
+/* Ajuste para a transição de desaparecimento suave */
+.custom-alert.fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transição de 1 segundo para suavidade */
+}
+
+/* Ícones personalizados para as flash messages */
+.custom-alert .fas {
+    font-size: 1.5rem;
+}
+
+/* Cores e ícones baseados nas categorias de mensagens */
+.alert-success {
     background-color: #d4edda;
+    color: #155724;
 }
 
-.alert-info {
-    background-color: #d9edf7;
-    color: #31708f;
-    border-color: #bce8f1;
-    font-size: 1.1rem;
-    padding: 15px;
-    border-radius: 5px;
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
-.table {
-    margin-top: 20px;
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
 }
 
-.table th, .table td {
-    text-align: center;
+/* Animação para exibir as flash messages */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-alert .close {
+    font-size: 1rem;  /* Reduz o tamanho da fonte para deixá-lo menor */
+    color: #333;
+    cursor: pointer;
+    padding: 0;  /* Remove o espaçamento extra */
+    margin-left: 10px; /* Ajusta a distância do ícone de fechar */
+}
+
+
+.custom-alert .close:hover {
+    color: #555; /* Alteração de cor ao passar o mouse */
 }
