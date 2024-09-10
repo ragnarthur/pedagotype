@@ -16,15 +16,17 @@ def create_app():
     mongo = MongoClient(mongo_url)
     db = mongo[mongo_database]
 
-    # Importar e registrar blueprints após a criação do app
-    from .routes import main
-    from .api import api  # A importação do api.py vem aqui
-
     # Usar um contexto global para o db no app
     app.config['db'] = db  # Passa o db via configuração global
+
+    # Importar e registrar blueprints após a criação do app
+    from .routes import main
+    from .api import api  # Importa a API existente
+    from .auth import auth  # Importa a blueprint de autenticação
 
     # Registrar as blueprints
     app.register_blueprint(main)
     app.register_blueprint(api)
+    app.register_blueprint(auth)  # Registrar a blueprint de autenticação
 
     return app
