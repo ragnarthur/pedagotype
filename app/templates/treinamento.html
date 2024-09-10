@@ -23,13 +23,7 @@
         <p id="final-score"></p>
     </div>
 
-    <!-- Botões para enviar e continuar -->
-    <div class="d-flex justify-content-between">
-        <button id="submit-score-btn" class="btn btn-success" style="display: none;">Enviar Pontuação</button>
-        <button id="next-text-btn" class="btn btn-primary">Próximo Texto</button>
-    </div>
-
-    <!-- Modal de Parabéns -->
+    <!-- Modal de Parabéns com Pontuação -->
     <div class="modal fade" id="congratsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -41,29 +35,10 @@
                 </div>
                 <div class="modal-body">
                     <p>Você concluiu este texto com sucesso!</p>
+                    <p>Pontuação Atual: <span id="modal-current-score"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modal-next-text-btn">Próximo Texto</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Conclusão Final -->
-    <div class="modal fade" id="finalModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Treinamento Concluído!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Sua pontuação final é: <span id="final-total-score"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="repeat-btn">Recomeçar</button>
+                    <button type="button" class="btn btn-primary" id="next-text-btn">Próximo Texto</button>
                 </div>
             </div>
         </div>

@@ -1,29 +1,24 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const textElement = document.getElementById("text");
     const inputElement = document.getElementById("input");
-
-    // Desabilitar Ctrl + C e Ctrl + V
-    inputElement.addEventListener("keydown", function (event) {
-        if (event.ctrlKey && (event.key === "c" || event.key === "v")) {
-            event.preventDefault();
-            console.log("Ctrl+C e Ctrl+V estão desabilitados!");
-        }
-    });
+    const modalCurrentScoreElement = document.getElementById("modal-current-score");
 
     const resultElement = document.getElementById("result");
     const finalScoreElement = document.getElementById("final-score");
     const totalScoreElement = document.getElementById("total-score");
     const currentScoreElement = document.getElementById("current-score");
     const nextTextBtn = document.getElementById("next-text-btn");
-    const submitScoreBtn = document.getElementById("submit-score-btn");
 
-    // Variáveis de controle
     let currentIndex = 0;
     let startTime = null;
     let timerInterval = null;
     let totalScore = 0;
     let currentScore = 0;
     let errorOccurred = false;
+    let isBlocked = false;  // Flag para bloquear o teclado após erro
+
+    // Variáveis para acentos
+    let isComposing = false;  // Verifica se o usuário está digitando um caractere acentuado
 
     // Carrega o primeiro texto
     fetchNextText(currentIndex);
@@ -38,15 +33,22 @@
                 resultElement.innerText = '';
                 startTime = null;
                 errorOccurred = false;  // Reinicia o estado de erro
+                isBlocked = false;  // Desbloqueia o teclado
                 updateDisplayedText('');  // Limpa o texto exibido
             })
             .catch(error => console.error("Erro ao carregar o texto:", error));
     }
 
     // Função para capturar e processar a entrada do usuário
-    inputElement.addEventListener("input", function () {
+    inputElement.addEventListener("input", function (event) {
         const inputText = inputElement.value;
         const originalText = textElement.innerText;
+
+        // Bloqueia o teclado se houver erro e o caractere não for backspace, exceto durante a composição de acentos
+        if (isBlocked && !isComposing && event.inputType !== 'deleteContentBackward') {
+            inputElement.value = inputText.slice(0, -1);  // Remove o caractere incorreto
+            return;
+        }
 
         // Verifica se o texto digitado está correto até o ponto atual
         let isCorrect = checkCorrectness(inputText, originalText);
@@ -54,9 +56,11 @@
         if (!isCorrect) {
             inputElement.classList.add("shake");  // Aplica efeito de erro
             errorOccurred = true;
+            isBlocked = true;  // Bloqueia o teclado para outros caracteres
         } else {
             inputElement.classList.remove("shake");
             errorOccurred = false;
+            isBlocked = false;  // Desbloqueia o teclado quando o erro é corrigido
             updateDisplayedText(inputText);  // Atualiza o texto exibido
         }
 
@@ -64,14 +68,22 @@
         if (inputText === originalText && !errorOccurred) {
             clearInterval(timerInterval);  // Para o timer
             calculateScore(inputText, originalText);  // Calcula a pontuação
-            submitScoreBtn.style.display = 'inline-block';  // Mostra o botão de enviar pontuação
+            showCongratsModal();  // Exibe o modal de parabéns
         }
+    });
+
+    // Função para detectar se o usuário está digitando um caractere composto (acentuado)
+    inputElement.addEventListener('compositionstart', function () {
+        isComposing = true;
+    });
+
+    inputElement.addEventListener('compositionend', function () {
+        isComposing = false;  // O caractere composto foi finalizado
     });
 
     // Função para verificar se o texto digitado está correto até o ponto atual
     function checkCorrectness(inputText, originalText) {
         for (let i = 0; i < inputText.length; i++) {
-            // Verifica caractere por caractere, inclusive acentos
             if (inputText[i] !== originalText[i]) {
                 return false;
             }
@@ -107,7 +119,19 @@
 
         currentScoreElement.innerText = currentScore;
         totalScoreElement.innerText = totalScore;
+        modalCurrentScoreElement.innerText = currentScore;  // Atualiza pontuação no modal
     }
+
+    // Função para exibir o modal de parabéns
+    function showCongratsModal() {
+        $('#congratsModal').modal('show');  // Exibe o modal
+    }
+
+    // Evento para o botão no modal para carregar o próximo texto
+    nextTextBtn.addEventListener('click', function () {
+        $('#congratsModal').modal('hide');  // Fecha o modal
+        fetchNextText(++currentIndex);  // Carrega o próximo texto
+    });
 
     // Inicia o timer quando o usuário começa a digitar
     inputElement.addEventListener("input", function () {
