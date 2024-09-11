@@ -4,38 +4,39 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="text-center mb-4">Treinamento de Digitação</h2>
+    <h2 class="text-center my-4" style="font-size: 2rem; color: #3498DB;">Treinamento de Digitação</h2>
 
     <!-- Exibição do texto para digitação -->
-    <div id="text-container" class="border p-3 mb-4">
-        <p id="text" data-current-index="0" class="lead">Carregando texto...</p>
+    <div id="text-container" class="border p-4 mb-4" style="background-color: #f0f8ff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <p id="text" data-current-index="0" class="lead" style="font-size: 1.5rem; color: #2C3E50; text-align: justify;">Carregando texto...</p>
     </div>
 
     <!-- Campo de entrada para digitação -->
     <div class="form-group">
-        <input type="text" id="input" class="form-control" placeholder="Digite aqui o texto acima..." autocomplete="off">
+        <input type="text" id="input" class="form-control" placeholder="Digite aqui o texto acima..." autocomplete="off" 
+               style="padding: 15px; font-size: 1.2rem; border-radius: 10px; border: 2px solid #3498DB; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
     </div>
 
     <!-- Exibição de resultados -->
-    <div id="result" class="mb-4">
-        <p>Pontuação Atual: <span id="current-score">0</span></p>
-        <p>Pontuação Total: <span id="total-score">0</span></p>
+    <div id="result" class="my-4 p-3" style="background-color: #eef2f7; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+        <p style="font-size: 1.3rem; color: #2ECC71;" class="hidden-score">Pontuação Atual: <span id="current-score">0</span></p>
+        <p style="font-size: 1.3rem; color: #3498DB;" class="hidden-score">Pontuação Total: <span id="total-score">0</span></p>
         <p id="final-score"></p>
     </div>
 
     <!-- Modal de pontuação -->
     <div class="modal" id="scoreModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Parabéns!</h5>
+            <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                <div class="modal-header" style="background-color: #3498DB; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <h5 class="modal-title" style="font-size: 1.5rem;">Parabéns!</h5>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="font-size: 1.2rem; color: #2C3E50;">
                     <p>Você concluiu este texto com sucesso!</p>
                     <p>Pontuação Atual: <span id="modal-current-score"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Próximo Texto</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 1.1rem;">Próximo Texto</button>
                 </div>
             </div>
         </div>
