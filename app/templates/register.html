@@ -3,25 +3,25 @@
 {% block title %}Cadastrar - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card shadow-lg" style="width: 500px; border-radius: 10px;">
+<div class="container d-flex justify-content-center align-items-center login-container">
+    <div class="card shadow-lg" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.8);">
         <div class="card-body">
-            <h3 class="text-center mb-4" style="font-size: 1.5rem;">Cadastro de Usuário</h3> <!-- Aumentado o tamanho da fonte do título -->
+            <h3 class="text-center mb-4" style="font-size: 1.5rem;">Cadastro de Usuário</h3>
             <form action="{{ url_for('auth.register') }}" method="POST">
                 <div class="form-group">
-                    <label for="name" style="font-size: 1.1rem;">Nome</label> <!-- Aumentado o tamanho da fonte do rótulo -->
-                    <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Seu nome" required style="font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
+                    <label for="name" style="font-size: 1.1rem;">Nome</label>
+                    <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Seu nome" required style="font-size: 1rem;">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="email" style="font-size: 1.1rem;">Email</label> <!-- Aumentado o tamanho da fonte do rótulo -->
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Seu email" required style="font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
+                    <label for="email" style="font-size: 1.1rem;">Email</label>
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Seu email" required style="font-size: 1rem;">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="password" style="font-size: 1.1rem;">Senha</label> <!-- Aumentado o tamanho da fonte do rótulo -->
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Sua senha" required style="font-size: 1rem;"> <!-- Aumentada a fonte do campo -->
+                    <label for="password" style="font-size: 1.1rem;">Senha</label>
+                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Sua senha" required style="font-size: 1rem;">
                 </div>
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.1rem;">Cadastrar</button> <!-- Aumentada a fonte do botão -->
+                    <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.1rem;">Cadastrar</button>
                 </div>
             </form>
         </div>

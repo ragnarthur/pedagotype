@@ -64,8 +64,8 @@
 
 /* Efeito de botão com pulso */
 .pulse-button {
-    background-color: #1ABC9C;
-    color: white;
+    background-color: #1ABC9C; /* Cor do fundo do botão */
+    color: white; /* Cor do texto */
     border: none;
     padding: 15px 30px;
     border-radius: 10px;
@@ -75,7 +75,9 @@
 
 .pulse-button:hover {
     background-color: #16A085;
+    color: white; /* Garante que o texto também fique branco ao passar o mouse */
 }
+
 
 @keyframes pulse {
     0% {
@@ -91,6 +93,7 @@
         box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
     }
 }
+
 
 /* Animações para fade e slide */
 @keyframes fadeInUp {
@@ -124,10 +127,6 @@
 .fade-in.delay-1 {
     animation-delay: 0.3s;
 }
-
-.fade
-
-
 
 /* ======================
    Estilização para Modais
@@ -319,8 +318,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .shake {
-    animation: shake 0.3s;
-    border: 2px solid red;
+    animation: shake 0.3s;  /* Aplica o efeito de shake */
+    border: 2px solid red;  /* Pode ser ajustado para dar feedback visual mais forte */
 }
 
 @keyframes shake {
@@ -401,14 +400,26 @@ table tr:nth-child(even) {
 }
 
 /* ======================
-   Estilização do Formulário de Login
+   Estilo da página de Login e Registro
 ========================== */
+.login-container {
+    background-image: url('/static/images/login_registrar.jpg'); /* Caminho da imagem de fundo */
+    background-size: cover;          /* Faz com que a imagem cubra toda a tela */
+    background-position: center;     /* Centraliza a imagem */
+    background-repeat: no-repeat;    /* Garante que a imagem não se repita */
+    min-height: 100vh;               /* Garante que a altura mínima seja 100% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card {
     width: 100%;
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparência para o fundo */
 }
 
 .card-body {
@@ -452,13 +463,6 @@ h3 {
     border-color: #2980B9;
 }
 
-.container-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-}
-
 .text-center a {
     color: #3498DB;
     text-decoration: none;
@@ -466,6 +470,13 @@ h3 {
 
 .text-center a:hover {
     text-decoration: underline;
+}
+
+/* ======================
+   Ocultar Pontuação
+========================== */
+.hidden-score {
+    display: none;
 }
 
 /* ======================
@@ -540,7 +551,6 @@ h3 {
     padding: 0;  /* Remove o espaçamento extra */
     margin-left: 10px; /* Ajusta a distância do ícone de fechar */
 }
-
 
 .custom-alert .close:hover {
     color: #555; /* Alteração de cor ao passar o mouse */
