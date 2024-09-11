@@ -400,14 +400,26 @@ table tr:nth-child(even) {
 }
 
 /* ======================
-   Estilização do Formulário de Login
+   Estilo da página de Login e Registro
 ========================== */
+.login-container {
+    background-image: url('/static/images/login_registrar.jpg'); /* Caminho da imagem de fundo */
+    background-size: cover;          /* Faz com que a imagem cubra toda a tela */
+    background-position: center;     /* Centraliza a imagem */
+    background-repeat: no-repeat;    /* Garante que a imagem não se repita */
+    min-height: 100vh;               /* Garante que a altura mínima seja 100% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card {
     width: 100%;
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparência para o fundo */
 }
 
 .card-body {
@@ -449,13 +461,6 @@ h3 {
 .btn-primary:hover {
     background-color: #2980B9;
     border-color: #2980B9;
-}
-
-.container-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
 }
 
 .text-center a {
