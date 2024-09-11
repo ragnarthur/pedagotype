@@ -1,0 +1,54 @@
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+env/
+
+# Configurações do Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pyo
+*.pyd
+
+# Logs e bancos de dados locais
+*.log
+*.sqlite3
+
+# Pastas de migrações do Django/Flask (se aplicável)
+*/migrations/
+
+# Arquivos de cache e temporários
+*.swp
+*.swo
+*.tmp
+*.DS_Store
+*.bak
+
+# Configurações de IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Arquivos de deploy específicos (Railway, Vercel, Heroku, etc.)
+*.env
+.env.*
+
+# Diretórios de imagens ou arquivos grandes que podem ser regenerados
+static/images/*.jpg
+static/images/*.png
+static/images/*.jpeg
+
+# Diretórios de arquivos estáticos gerados
+staticfiles/
+node_modules/
+
+# Build directories
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Arquivos de configuração locais
+*.local
