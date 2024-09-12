@@ -276,6 +276,63 @@ h2 {
 }
 
 
+/* ======================
+   Estilo da página de Pontuação
+========================== */
+/* Fundo da página de pontuação */
+.pontuacao-background {
+    background-image: url('/static/images/pontuacao.jpg'); /* Caminho da imagem de fundo */
+    background-size: cover;          
+    background-position: center;     
+    background-repeat: no-repeat;    
+    min-height: 100vh;               
+    width: 100vw;                    
+    display: flex;
+    justify-content: center;         
+    align-items: center;             
+    padding: 0;                      
+    margin: 0;                       
+    position: relative;              
+}
+
+/* Título com cor mais sóbria e legível */
+.animated-title {
+    font-weight: 700;
+    font-size: 3rem;                 
+    color: #007BFF;  /* Azul mais claro e suave */                    
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);  /* Sombra suave para dar contraste */
+}
+
+/* Tabela com azul leve e sem hover */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);  /* Azul claro para linhas ímpares */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 123, 255, 0.1);  /* Azul um pouco mais forte para linhas pares */
+}
+
+.table-info {
+    background-color: rgba(0, 123, 255, 0.2);  /* Destaque mais leve para o usuário logado */
+}
+
+.table-hover tbody tr:hover {
+    background-color: transparent;  /* Remover o hover */
+}
+
+/* Botão */
+.btn-primary {
+    background-color: #007BFF;  /* Azul mais claro */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;  /* Azul escuro no hover */
+}
+
+
+
 
 /* ======================
    Estilização para Modais
