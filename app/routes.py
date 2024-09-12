@@ -67,11 +67,18 @@ def save_score():
     logged_in_user = session.get('user')
     
     if logged_in_user and score is not None and text_id is not None:
-        # Atualizar o usuário no banco de dados com o texto completado e a pontuação
+        # Recuperar a pontuação existente do usuário
+        user_data = db.users.find_one({'email': logged_in_user}, {'score': 1})
+        current_score = user_data.get('score', 0)
+
+        # Somar a nova pontuação à existente
+        updated_score = current_score + score
+
+        # Atualizar o usuário no banco de dados com a nova pontuação e o texto completado
         db.users.update_one(
             {'email': logged_in_user},
             {
-                '$set': {'score': score, 'last_text_id': text_id},
+                '$set': {'score': updated_score, 'last_text_id': text_id},
                 '$addToSet': {'completed_text_ids': text_id}  # Adiciona o texto ao conjunto de textos completados
             }
         )
@@ -93,14 +100,6 @@ def progresso():
             user_score = user['score']
 
     return render_template('progresso.html', users=users, user_score=user_score, logged_in_user=logged_in_user)
-
-    # Encontra e separa o usuário logado
-    for user in users:
-        if user['name'] == logged_in_user:
-            user_score = user['score']
-            last_exercise_index = user.get('last_exercise_index', 0)
-
-    return render_template('progresso.html', users=users, user_score=user_score, logged_in_user=logged_in_user, last_exercise_index=last_exercise_index)
 
 
 @main.route('/get_last_text_id')
