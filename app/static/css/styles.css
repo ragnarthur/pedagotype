@@ -26,31 +26,52 @@ main.container {
     background-position: center;     /* Centraliza a imagem */
     background-repeat: no-repeat;    /* Garante que a imagem não se repita */
     min-height: 100vh;               /* Garante que a altura mínima seja 100% da altura da tela */
+    width: 100vw;                    /* Garante que a largura seja 100% da tela */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;                      /* Remove o padding do Bootstrap */
+    justify-content: center;         /* Centraliza horizontalmente o conteúdo */
+    align-items: center;             /* Centraliza verticalmente o conteúdo */
+    padding: 0;                      /* Remove o padding */
     margin: 0;                       /* Remove margens */
+    position: relative;              /* Para que o conteúdo seja posicionado corretamente */
 }
 
+.container {
+    max-width: 1000px; /* Limite de largura */
+    padding: 20px; /* Espaçamento interno */
+    box-sizing: border-box;
+    z-index: 2; /* Para garantir que fique acima do background */
+}
+
+/* Efeito de movimento no título */
 .animated-title {
     font-weight: 700;
-    font-size: 3rem;                 /* Aumentando o título */
+    font-size: 4rem;                 /* Aumentando o título */
     color: #ffffff;                  /* Cor branca para melhor contraste com a imagem de fundo */
-    animation: slideInFromLeft 1.2s ease-out forwards;
+    animation: slideInFromLeft 2s ease-out forwards, fadeInAndOut 5s infinite ease-in-out;
+    opacity: 1;                      /* Garantir que o título seja visível */
 }
 
+@keyframes fadeInAndOut {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* Ajuste no tamanho do box de boas-vindas */
 .welcome-box {
     background-color: rgba(255, 255, 255, 0.5); /* Tornando o box translúcido */
     border-radius: 15px;
-    padding: 40px;                  /* Aumentando o padding */
+    padding: 60px 40px;                 /* Aumentando o padding para melhor centralização */
     text-align: left;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
-    max-width: 1000px;
+    max-width: 1200px;                  /* Aumentando o tamanho máximo do box */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar o box */
+    z-index: 2; /* Garantir que o box fique acima da imagem de fundo */
+    position: relative; /* Mantém o box acima do fundo */
+    margin: 0 auto; /* Centraliza o box horizontalmente */
 }
 
 .welcome-box:hover {
@@ -68,35 +89,52 @@ main.container {
     color: #1ABC9C;
 }
 
-/* Sobrescrevendo margens e paddings dos itens de lista do Bootstrap */
+/* Removendo margens e paddings padrão do Bootstrap */
 .welcome-box .feature-list {
     list-style-type: none;
-    padding-left: 0;
+    padding-left: 0; /* Remove o padding à esquerda */
+    margin: 0; /* Remove margens adicionais */
 }
 
+/* Estilizando os itens da lista */
 .welcome-box .feature-list li {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    color: #2C3E50;
-    transition: transform 0.3s ease;
+    font-size: 1.4rem; /* Aumentando o tamanho do texto para melhor legibilidade */
+    margin-bottom: 20px; /* Aumentando o espaçamento entre os itens */
+    color: #2C3E50; /* Cor principal do texto */
+    transition: transform 0.3s ease, color 0.3s ease; /* Suave transição no hover */
+    display: flex; /* Alinhando o ícone e o texto na mesma linha */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
 }
 
+/* Estilizando o ícone dentro dos itens da lista */
 .welcome-box .feature-list li i {
-    color: #1ABC9C;
-    margin-right: 10px;
-    font-size: 1.5rem;
+    color: #1ABC9C; /* Cor dos ícones */
+    margin-right: 15px; /* Aumenta o espaçamento entre o ícone e o texto */
+    font-size: 1.7rem; /* Aumentando o tamanho dos ícones */
+    transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
 }
 
+/* Efeito de hover nos itens da lista */
 .welcome-box .feature-list li:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Aumenta levemente o tamanho do item no hover */
+    color: #1ABC9C; /* Muda a cor do texto para combinar com o ícone */
 }
 
+/* Efeito de hover nos ícones */
+.welcome-box .feature-list li:hover i {
+    transform: rotate(20deg); /* Adiciona uma leve rotação ao ícone ao passar o mouse */
+}
+
+/* Destaque para elementos strong */
 .welcome-box strong {
-    color: #1ABC9C;
+    color: #1ABC9C; /* Cor de destaque para textos em negrito */
+    font-weight: bold; /* Adiciona um peso extra ao texto destacado */
 }
 
 /* Efeito de botão com pulso */
+/* Adicionando um espaçamento maior entre o botão e o rodapé */
 .pulse-button {
+    margin-top: 30px; /* Adicionando mais espaço acima do botão */
     background-color: #1ABC9C;
     color: white;
     border: none;
