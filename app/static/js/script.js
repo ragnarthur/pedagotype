@@ -58,42 +58,47 @@
     }
 
     // Função para capturar e processar a entrada do usuário
-inputElement.addEventListener("input", function (event) {
-    const inputText = inputElement.value;
-    const originalText = textElement.innerText;
+    inputElement.addEventListener("input", function (event) {
+        const inputText = inputElement.value;
+        const originalText = textElement.innerText;
 
-    // Bloqueia o teclado se houver erro e o caractere não for backspace, exceto durante a composição de acentos
-    if (isBlocked && !isComposing && event.inputType !== 'deleteContentBackward') {
-        inputElement.value = inputText.slice(0, -1);  // Remove o caractere incorreto
-        return;
-    }
+        // Bloqueia o teclado se houver erro e o caractere não for backspace, exceto durante a composição de acentos
+        if (isBlocked && !isComposing && event.inputType !== 'deleteContentBackward') {
+            inputElement.value = inputText.slice(0, -1);  // Remove o caractere incorreto
+            return;
+        }
 
-    // Verifica se o texto digitado está correto até o ponto atual
-    let isCorrect = checkCorrectness(inputText, originalText);
+        // Verifica se o texto digitado está correto até o ponto atual
+        let isCorrect = checkCorrectness(inputText, originalText);
 
-    if (!isCorrect) {
-        textElement.classList.add("shake");  // Aplica o efeito de shake no texto de referência
-        errorOccurred = true;
-        isBlocked = true;  // Bloqueia o teclado para outros caracteres
+        if (!isCorrect) {
+            textElement.classList.add("shake");  // Aplica o efeito de shake no texto de referência
+            errorOccurred = true;
+            isBlocked = true;  // Bloqueia o teclado para outros caracteres
 
-        // Remover a animação de shake após um tempo
-        setTimeout(() => {
+            // Remover a animação de shake após um tempo
+            setTimeout(() => {
+                textElement.classList.remove("shake");
+            }, 500);  // A animação de shake será removida após 500ms
+        } else {
             textElement.classList.remove("shake");
-        }, 500);  // A animação de shake será removida após 500ms
-    } else {
-        textElement.classList.remove("shake");
-        errorOccurred = false;
-        isBlocked = false;  // Desbloqueia o teclado quando o erro é corrigido
-        updateDisplayedText(inputText);  // Atualiza o texto exibido
-    }
+            errorOccurred = false;
+            isBlocked = false;  // Desbloqueia o teclado quando o erro é corrigido
+            updateDisplayedText(inputText);  // Atualiza o texto exibido
+        }
 
-    // Se o texto for digitado corretamente e completamente
-    if (inputText === originalText && !errorOccurred) {
-        clearInterval(timerInterval);  // Para o timer
-        calculateScore(inputText, originalText);  // Calcula a pontuação
-        saveScoreAndText();  // Salva a pontuação e o texto no banco de dados
-    }
-});
+        // Se o texto for digitado corretamente e completamente
+        if (inputText === originalText && !errorOccurred) {
+            clearInterval(timerInterval);  // Para o timer
+            calculateScore(inputText, originalText);  // Calcula a pontuação
+            saveScoreAndText();  // Salva a pontuação e o texto no banco de dados
+        }
+
+        // Exibe o box de tempo quando o usuário começa a digitar
+        if (!resultElement.classList.contains("visible")) {
+            resultElement.classList.add("visible");
+        }
+    });
 
     // Função para salvar a pontuação e o texto no banco de dados
     function saveScoreAndText() {
