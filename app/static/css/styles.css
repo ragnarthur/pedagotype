@@ -199,6 +199,29 @@ h2 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* Animação de deslizar para o título */
+.animated-title {
+    font-weight: 700;
+    font-size: 3rem;                 
+    color: #ffffff;                    
+    animation: slideInFromLeft 2s ease-out forwards;
+    opacity: 1;                        
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+/* Animação para deslizar da esquerda */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
 /* Estilo do box de texto e input unificados */
 .text-box {
     background-color: rgba(255, 255, 255, 0.9); /* Fundo translúcido */
