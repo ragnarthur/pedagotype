@@ -3,25 +3,26 @@
 {% block title %}Cadastrar - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center login-container">
-    <div class="card shadow-lg" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.8);">
+<!-- Background sem margens -->
+<div class="login-background">
+    <div class="card shadow-lg">
         <div class="card-body">
             <h3 class="text-center mb-4" style="font-size: 1.5rem;">Cadastro de Usuário</h3>
             <form action="{{ url_for('auth.register') }}" method="POST">
                 <div class="form-group">
                     <label for="name" style="font-size: 1.1rem;">Nome</label>
-                    <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Seu nome" required style="font-size: 1rem;">
+                    <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Seu nome" required>
                 </div>
                 <div class="form-group mt-3">
                     <label for="email" style="font-size: 1.1rem;">Email</label>
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Seu email" required style="font-size: 1rem;">
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Seu email" required>
                 </div>
                 <div class="form-group mt-3">
                     <label for="password" style="font-size: 1.1rem;">Senha</label>
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Sua senha" required style="font-size: 1rem;">
+                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Sua senha" required>
                 </div>
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.1rem;">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
                 </div>
             </form>
         </div>
