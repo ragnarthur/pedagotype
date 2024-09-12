@@ -3,24 +3,25 @@
 {% block title %}Login - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center login-container" style="min-height: 80vh;">
-    <div class="card shadow-lg" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.8);">
+<!-- Background sem margens -->
+<div class="login-background">
+    <div class="card shadow-lg">
         <div class="card-body">
             <h3 class="text-center mb-4" style="font-size: 1.5rem;">Login</h3>
             <form method="POST" action="{{ url_for('auth.login') }}">
                 <div class="form-group">
                     <label for="email" style="font-size: 1.1rem;">Email</label>
-                    <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Digite seu email" required style="border-radius: 5px; font-size: 1rem;">
+                    <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Digite seu email" required>
                 </div>
                 <div class="form-group mt-3">
                     <label for="password" style="font-size: 1.1rem;">Senha</label>
-                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Digite sua senha" required style="border-radius: 5px; font-size: 1rem;">
+                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-block" style="border-radius: 5px; font-size: 1.2em;">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                 </div>
                 <div class="text-center mt-3">
-                    <small style="font-size: 1.0rem;">Não tem uma conta? <a href="{{ url_for('auth.register') }}" style="font-size: 1.1rem;">Cadastre-se</a></small>
+                    <small>Não tem uma conta? <a href="{{ url_for('auth.register') }}">Cadastre-se</a></small>
                 </div>
             </form>
         </div>

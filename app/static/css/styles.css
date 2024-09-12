@@ -1,4 +1,23 @@
 ﻿/* ======================
+   Sobrescrevendo margens e paddings globais do Bootstrap
+========================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+/* Removendo as margens do container do Bootstrap */
+main.container {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+}
+
+
+/* ======================
    Estilo da página inicial com efeitos especiais
 ========================== */
 .index-background {
@@ -10,7 +29,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;                   /* Ajuste de espaçamento para garantir que o conteúdo não fique colado na borda */
+    padding: 0;                      /* Remove o padding do Bootstrap */
+    margin: 0;                       /* Remove margens */
 }
 
 .animated-title {
@@ -29,7 +49,7 @@
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
-    max-width: 1000px;              /* Aumentando a largura do box */
+    max-width: 1000px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar o box */
 }
 
@@ -39,7 +59,7 @@
 }
 
 .welcome-box p {
-    font-size: 1.4rem;              /* Aumentando o tamanho do texto */
+    font-size: 1.4rem;
     color: #2C3E50;
     transition: color 0.3s ease;
 }
@@ -48,14 +68,15 @@
     color: #1ABC9C;
 }
 
+/* Sobrescrevendo margens e paddings dos itens de lista do Bootstrap */
 .welcome-box .feature-list {
     list-style-type: none;
     padding-left: 0;
 }
 
 .welcome-box .feature-list li {
-    font-size: 1.3rem;              /* Aumentando o tamanho da lista */
-    margin-bottom: 15px;            /* Aumentando o espaçamento entre os itens */
+    font-size: 1.3rem;
+    margin-bottom: 15px;
     color: #2C3E50;
     transition: transform 0.3s ease;
 }
@@ -63,7 +84,7 @@
 .welcome-box .feature-list li i {
     color: #1ABC9C;
     margin-right: 10px;
-    font-size: 1.5rem;              /* Aumentando o tamanho dos ícones */
+    font-size: 1.5rem;
 }
 
 .welcome-box .feature-list li:hover {
@@ -76,20 +97,21 @@
 
 /* Efeito de botão com pulso */
 .pulse-button {
-    background-color: #1ABC9C; /* Cor do fundo do botão */
-    color: white; /* Cor do texto */
+    background-color: #1ABC9C;
+    color: white;
     border: none;
-    padding: 20px 40px;         /* Aumentando o tamanho do botão */
+    padding: 20px 40px;
     border-radius: 10px;
-    font-size: 1.5rem;          /* Aumentando o tamanho do texto do botão */
+    font-size: 1.5rem;
     animation: pulse 2s infinite;
 }
 
 .pulse-button:hover {
     background-color: #16A085;
-    color: white; /* Garante que o texto também fique branco ao passar o mouse */
+    color: white;
 }
 
+/* Animações */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -105,7 +127,6 @@
     }
 }
 
-/* Animações para fade e slide */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -128,9 +149,6 @@
     }
 }
 
-
-
-/* Fade-in para elementos */
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.8s forwards;
@@ -198,26 +216,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ======================
-   Navbar e Menu de Navegação
+   Navbar fixa
 ========================== */
 .navbar {
     background-color: #2C3E50;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 999; /* Garante que a navbar fique no topo */
+    width: 100%;
+    z-index: 999;
 }
 
 .navbar-brand {
-    font-size: 2rem; /* Aumentado o tamanho da marca */
+    font-size: 2rem;
     font-weight: 700;
     color: #ECF0F1;
     transition: color 0.3s ease;
 }
 
 .navbar-brand:hover {
-    color: #1ABC9C; /* Adiciona uma cor de destaque ao passar o mouse */
+    color: #1ABC9C;
 }
 
 .navbar-nav .nav-link {
@@ -225,48 +244,30 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2rem;
     margin-right: 15px;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    padding: 10px 15px; /* Melhor espaçamento ao redor do link */
+    padding: 10px 15px;
     border-radius: 5px;
 }
 
 .navbar-nav .nav-link:hover {
     background-color: #1ABC9C;
     color: white;
-    border-radius: 5px;
-    transform: scale(1.05); /* Pequeno zoom ao passar o mouse */
+    transform: scale(1.05);
 }
 
 .navbar-nav .nav-link.active {
     background-color: #1ABC9C;
     color: #fff !important;
     font-weight: bold;
-    border-radius: 5px;
     padding: 10px 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-toggler {
     border: none;
 }
 
-.navbar-toggler-icon {
-    color: #ECF0F1;
-}
-
 .navbar-collapse {
     justify-content: flex-end;
 }
-
-@media (max-width: 768px) {
-    .navbar-nav {
-        text-align: center;
-    }
-
-    .navbar-nav .nav-link {
-        margin: 5px 0;
-    }
-}
-
 
 /* ======================
    Estilo de Formulários e Botões
@@ -343,18 +344,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ======================
-   Estilização do Footer
+   Footer fixo
 ========================== */
 footer {
     background-color: #2C3E50;
     color: #ECF0F1;
     padding: 20px 0;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {
     margin: 0;
     font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    footer p {
+        font-size: 0.8rem;
+    }
 }
 
 /* ======================
@@ -412,26 +433,28 @@ table tr:nth-child(even) {
 }
 
 /* ======================
-   Estilo da página de Login e Registro
+   Estilo da página de Login
 ========================== */
-.login-container {
+.login-background {
     background-image: url('/static/images/login_registrar.jpg'); /* Caminho da imagem de fundo */
-    background-size: cover;          /* Faz com que a imagem cubra toda a tela */
+    background-size: cover;          /* Garante que a imagem cubra toda a tela */
     background-position: center;     /* Centraliza a imagem */
-    background-repeat: no-repeat;    /* Garante que a imagem não se repita */
-    min-height: 100vh;               /* Garante que a altura mínima seja 100% da altura da tela */
+    background-repeat: no-repeat;    /* Evita repetição da imagem */
+    min-height: 100vh;               /* Ocupa 100% da altura da tela */
+    width: 100vw;                    /* Ocupa 100% da largura da tela */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Estilizando o card de login */
 .card {
-    width: 100%;
-    max-width: 500px;
+    max-width: 400px;               /* Largura máxima do formulário */
+    width: 100%;                    /* Ocupa 100% da largura disponível */
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    background-color: rgba(255, 255, 255, 0.8); /* Transparência para o fundo */
+    background-color: rgba(255, 255, 255, 0.8); /* Transparência no fundo do formulário */
+    margin: 0 auto;                 /* Centraliza o card horizontalmente */
 }
 
 .card-body {
@@ -520,7 +543,7 @@ h3 {
 /* Ajuste para a transição de desaparecimento suave */
 .custom-alert.fade {
     opacity: 0;
-    transition: opacity 1s ease-in-out; /* Transição de 1 segundo para suavidade */
+    transition: opacity 1.2s ease-in-out; /* Transição de 1.2 segundo para suavidade */
 }
 
 /* Ícones personalizados para as flash messages */
