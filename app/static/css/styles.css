@@ -16,7 +16,6 @@ main.container {
     width: 100vw;
 }
 
-
 /* ======================
    Estilo da página inicial com efeitos especiais
 ========================== */
@@ -74,19 +73,30 @@ main.container {
     margin: 0 auto; /* Centraliza o box horizontalmente */
 }
 
+.welcome-box p, 
+.welcome-box h2, 
+.welcome-box ul li {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra preta com opacidade */
+}
+
 .welcome-box:hover {
     background-color: rgba(255, 255, 255, 0.8); /* Tornando o box um pouco mais opaco ao passar o mouse */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .welcome-box p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;  /* Aumentando o peso da fonte para melhorar a legibilidade */
     color: #2C3E50;
     transition: color 0.3s ease;
 }
 
 .welcome-box:hover p {
-    color: #1ABC9C;
+    color: #000000;
+}
+
+.welcome-box ul li {
+    font-size: 1.4rem; /* Tamanho ajustado para os itens da lista */
 }
 
 /* Removendo margens e paddings padrão do Bootstrap */
@@ -108,7 +118,7 @@ main.container {
 
 /* Estilizando o ícone dentro dos itens da lista */
 .welcome-box .feature-list li i {
-    color: #1ABC9C; /* Cor dos ícones */
+    color: #78d48c; /* Cor dos ícones */
     margin-right: 15px; /* Aumenta o espaçamento entre o ícone e o texto */
     font-size: 1.7rem; /* Aumentando o tamanho dos ícones */
     transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
@@ -117,7 +127,7 @@ main.container {
 /* Efeito de hover nos itens da lista */
 .welcome-box .feature-list li:hover {
     transform: scale(1.05); /* Aumenta levemente o tamanho do item no hover */
-    color: #1ABC9C; /* Muda a cor do texto para combinar com o ícone */
+    color: #0e160f; /* Muda a cor do texto para combinar com o ícone */
 }
 
 /* Efeito de hover nos ícones */
@@ -127,44 +137,11 @@ main.container {
 
 /* Destaque para elementos strong */
 .welcome-box strong {
-    color: #1ABC9C; /* Cor de destaque para textos em negrito */
+    color: #78d48c; /* Cor de destaque para textos em negrito */
     font-weight: bold; /* Adiciona um peso extra ao texto destacado */
 }
 
-/* Efeito de botão com pulso */
-/* Adicionando um espaçamento maior entre o botão e o rodapé */
-.pulse-button {
-    margin-top: 30px; /* Adicionando mais espaço acima do botão */
-    background-color: #1ABC9C;
-    color: white;
-    border: none;
-    padding: 20px 40px;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    animation: pulse 2s infinite;
-}
-
-.pulse-button:hover {
-    background-color: #16A085;
-    color: white;
-}
-
-/* Animações */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
-    }
-    70% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 30px rgba(26, 188, 156, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
-    }
-}
-
+/* Animação para o fade-in */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -176,6 +153,7 @@ main.container {
     }
 }
 
+/* Animação para o título deslizando da esquerda */
 @keyframes slideInFromLeft {
     from {
         opacity: 0;
@@ -187,6 +165,7 @@ main.container {
     }
 }
 
+/* Aplicação do efeito de fade-in nos textos */
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.8s forwards;
