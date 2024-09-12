@@ -3,8 +3,37 @@
 {% block title %}Sobre - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center mb-4">Sobre o PedagoType</h2>
-    <p>O PedagoType foi desenvolvido como uma aplicação de treinamento de digitação com foco em textos pedagógicos. Utilizamos Flask no backend, MongoDB como banco de dados e uma API REST para o gerenciamento de usuários e pontuações.</p>
+<div class="sobre-background">
+    <div class="container">
+        <h2 class="animated-title text-center">Sobre o PedagoType</h2>
+
+        <div class="sobre-text-box">
+            <p>
+                O <strong>PedagoType</strong> é uma plataforma inovadora de treinamento de digitação com foco em conteúdos pedagógicos. 
+                Seu principal objetivo é permitir que os usuários aprimorem suas habilidades de digitação enquanto interagem com textos educativos.
+            </p>
+            <p>
+                A aplicação utiliza o framework <strong>Flask</strong> no backend, proporcionando uma estrutura robusta. 
+                <strong>MongoDB</strong> é o banco de dados escolhido, garantindo escalabilidade e gerenciamento eficiente das informações dos usuários.
+            </p>
+            <p>
+                Além disso, o sistema conta com uma <strong>API REST</strong> para gerenciamento de usuários e suas pontuações. 
+                A interface foi desenvolvida com HTML5, CSS3 e JavaScript, oferecendo uma experiência fluida em dispositivos móveis e desktops.
+            </p>
+            <p>
+                O <strong>PedagoType</strong> é uma solução eficiente para estudantes e profissionais que desejam melhorar suas habilidades de digitação e, ao mesmo tempo, aprender de maneira interativa e eficaz.
+            </p>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textBox = document.querySelector(".sobre-text-box");
+        setTimeout(() => {
+            textBox.classList.add("show");
+        }, 500); // Atraso para o efeito de animação
+    });
+</script>
+
 {% endblock %}
