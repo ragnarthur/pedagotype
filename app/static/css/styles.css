@@ -443,8 +443,117 @@ h2 {
     }
 }
 
+/* ======================
+   Estilo dinâmico para a página Contato com ajuste centralizado e interação ao passar o mouse
+========================== */
+/* Fundo da página */
+.contato-background {
+    background-image: url('/static/images/contato3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 80px); /* Ajusta a altura mínima considerando o footer */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Certifica-se de que o conteúdo comece no topo */
+    padding-top: 80px; /* Ajuste de padding superior para evitar sobreposição com a navbar */
+    padding-bottom: 0; /* Remove o padding inferior */
+    margin: 0;
+    position: relative;
+}
 
+/* Título animado */
+.animated-title {
+    font-weight: 700;
+    font-size: 3.5rem;
+    color: #ffffff;
+    animation: titleBounce 1.5s ease-in-out forwards;
+    opacity: 1;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 40px;
+    text-align: center;
+}
 
+/* Animação bounce no título */
+@keyframes titleBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05) translateY(10px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Box de contato centralizado com efeito */
+.contato-text-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    font-size: 1.6rem;
+    color: #2C3E50;
+    width: 80%;
+    max-width: 1000px;
+    text-align: justify;
+    line-height: 1.8;
+    margin: 0 auto 40px auto; /* Diminui o espaço inferior */
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .contato-text-box {
+        font-size: 1.4rem;
+        padding: 25px;
+        width: 90%;
+        margin-bottom: 40px;
+    }
+}
+
+/* Interação entre os parágrafos com atraso */
+.contato-text-box p {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Aplica a animação quando o box aparece */
+.contato-text-box.show p {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Efeito ao passar o mouse pelos parágrafos */
+.contato-text-box p:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Estilo para destacar partes importantes do texto */
+.contato-text-box strong {
+    font-weight: bold;
+    color: #1ABC9C;
+}
+
+/* Responsividade para o título animado */
+@media (max-width: 768px) {
+    .animated-title {
+        font-size: 2.5rem;
+    }
+    .contato-text-box {
+        font-size: 1.2rem;
+        padding: 25px;
+        width: 90%;
+    }
+}
 
 /* ======================
    Estilização para Modais

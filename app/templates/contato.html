@@ -3,8 +3,34 @@
 {% block title %}Contato - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center mb-4">Contato</h2>
-    <p>Somos uma empresa fictícia de desenvolvimento, especializada em criar soluções digitais personalizadas para clientes ao redor do mundo. Entre em contato conosco pelo e-mail: <a href="mailto:contato@pedagotype.com">contato@pedagotype.com</a>.</p>
+<div class="contato-background">
+    <div class="container">
+        <h2 class="animated-title text-center">Fale Conosco</h2>
+
+        <div class="contato-text-box">
+            <p>
+                Somos a <strong>PedagoType</strong>, uma empresa inovadora dedicada ao desenvolvimento de soluções digitais que transformam a maneira como nossos clientes interagem com a tecnologia.
+            </p>
+            <p>
+                Nosso mais recente produto, o <strong>PedagoType</strong>, foi projetado para facilitar a criação de experiências educacionais interativas, utilizando as mais recentes tecnologias em desenvolvimento web e metodologias ágeis.
+            </p>
+            <p>
+                Criamos ferramentas que otimizam o processo de aprendizado, tornando-o mais acessível e eficiente. Nossa equipe de desenvolvedores e especialistas em design digital está comprometida com a inovação e a excelência, entregando sempre a melhor solução para cada cliente.
+            </p>
+            <p>
+                Entre em contato conosco pelo e-mail: <a href="mailto:catsinthegarden01@gmail.com">catsinthegarden01@gmail.com</a>.
+            </p>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textBox = document.querySelector(".contato-text-box");
+        setTimeout(() => {
+            textBox.classList.add("show");
+        }, 500); // Atraso para o efeito de animação
+    });
+</script>
+
 {% endblock %}
