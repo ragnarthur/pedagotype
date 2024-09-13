@@ -3,8 +3,46 @@
 {% block title %}Contato - PedagoType{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center mb-4">Contato</h2>
-    <p>Somos uma empresa fictícia de desenvolvimento, especializada em criar soluções digitais personalizadas para clientes ao redor do mundo. Entre em contato conosco pelo e-mail: <a href="mailto:contato@pedagotype.com">contato@pedagotype.com</a>.</p>
+<div class="contato-background">
+    <div class="container">
+        <h2 class="animated-title text-center">Fale Conosco</h2>
+
+        <!-- Adicionamos a classe 'contato-container' aqui -->
+        <div class="contato-container">
+            <div class="contato-text-box">
+                <p>
+                    Somos a <strong>Nexora Tech</strong>, uma empresa inovadora dedicada ao desenvolvimento de soluções digitais que transformam a maneira como nossos clientes interagem com a tecnologia.
+                </p>
+                <p>
+                    Nosso mais recente produto, o <strong>PedagoType Web App</strong>, foi projetado para facilitar a criação de experiências educacionais interativas, utilizando as mais recentes tecnologias em desenvolvimento web e metodologias ágeis.
+                </p>
+                <p>
+                    Criamos ferramentas que otimizam o processo de aprendizado, tornando-o mais acessível e eficiente. Nossa equipe de desenvolvedores e especialistas em design digital está comprometida com a inovação e a excelência, entregando sempre a melhor solução para cada cliente.
+                </p>
+                <p>
+                    Entre em contato conosco pelo e-mail: <a href="mailto:catsinthegarden01@gmail.com">catsinthegarden01@gmail.com</a>.
+                </p>
+
+                <h3>Sobre o Criador</h3>
+                <p>
+                    <strong>Arthur Araújo</strong> é um desenvolvedor de software altamente capacitado, com especialização em desenvolvimento web e análise de dados. Com experiência em diversas linguagens de programação e uma abordagem focada na criação de soluções inovadoras para o setor educacional, Arthur combina tecnologia e pedagogia para desenvolver produtos que otimizam o aprendizado e a interação entre alunos e professores.
+                </p>
+                <p>
+                    Além de sua formação em Engenharia de Software, Arthur é também um apaixonado por música, atuando como professor e líder de projetos musicais. Seu mais recente projeto, o <strong>PedagoType Web App</strong>, reflete sua dedicação à criação de ferramentas interativas que tornam o processo de aprendizagem mais eficiente e envolvente.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Script para animação do texto -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textBox = document.querySelector(".contato-text-box");
+        setTimeout(() => {
+            textBox.classList.add("show");
+        }, 500); // Atraso para o efeito de animação
+    });
+</script>
+
 {% endblock %}

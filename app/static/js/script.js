@@ -17,6 +17,7 @@
     let errorOccurred = false;
     let isBlocked = false;  // Flag para bloquear o teclado após erro
     let isComposing = false;  // Verifica se o usuário está digitando um caractere acentuado
+    let timerInterval;  // Declaração da variável timerInterval
 
     // Função para carregar o último texto salvo ou iniciar o próximo texto
     fetchLastTextId();
