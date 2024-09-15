@@ -36,7 +36,7 @@ __pycache__/
 .env.*
 
 # Diretórios de imagens ou arquivos grandes que podem ser regenerados
-static/images/*.jpg
+
 static/images/*.png
 static/images/*.jpeg
 
