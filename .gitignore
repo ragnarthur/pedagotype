@@ -53,3 +53,4 @@ pip-wheel-metadata/
 # Arquivos de configuração locais
 *.local
 vercel.json
+.vercel
