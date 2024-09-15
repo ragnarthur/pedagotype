@@ -41,18 +41,5 @@ def delete_user(name):
     db.users.delete_one({'name': name})
     return jsonify({'message': f'User {name} deleted successfully!'})
 
-@api.route('/test-mongo', methods=['GET'])
-def test_mongo():
-    try:
-        # Obtém a URL do MongoDB das variáveis de ambiente
-        mongo_url = os.getenv('MONGO_URL')
-        if not mongo_url:
-            return "MONGO_URL não está definida nas variáveis de ambiente.", 500
 
-        client = MongoClient(mongo_url)
-        # Testa a conexão ao banco de dados
-        client.server_info()  # Isso irá falhar se não puder se conectar
-        return "Conexão com MongoDB estabelecida com sucesso!", 200
-    except Exception as e:
-        return f"Erro ao conectar ao MongoDB: {str(e)}", 500
 
