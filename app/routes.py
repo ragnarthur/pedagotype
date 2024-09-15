@@ -123,14 +123,3 @@ def get_last_text_id():
         return jsonify({'error': 'Usuário não autenticado'}), 401
 
 
-@main.route('/test-mongo')
-def test_mongo():
-    try:
-        # Obtém a URL do MongoDB das variáveis de ambiente
-        mongo_url = os.getenv('MONGO_URL')
-        client = MongoClient(mongo_url)
-        # Testa a conexão ao banco de dados
-        client.server_info()  # Isso irá falhar se não puder se conectar
-        return "Conexão com MongoDB estabelecida com sucesso!", 200
-    except Exception as e:
-        return f"Erro ao conectar ao MongoDB: {str(e)}", 500

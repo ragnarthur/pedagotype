@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify, request, current_app
+from pymongo import MongoClient
+import os
 
 api = Blueprint('api', __name__)
 
@@ -26,7 +28,7 @@ def create_user():
 
 # Rota PUT para atualizar o score de um usuário
 @api.route('/api/users/<name>', methods=['PUT'])
-def update_user_score(name):  # Adiciona 'name' como parâmetro
+def update_user_score(name):
     db = current_app.config['db']
     new_score = request.json['score']
     db.users.update_one({'name': name}, {'$set': {'score': new_score}})
@@ -34,7 +36,20 @@ def update_user_score(name):  # Adiciona 'name' como parâmetro
 
 # Rota DELETE para remover um usuário
 @api.route('/api/users/<name>', methods=['DELETE'])
-def delete_user(name):  # Adiciona 'name' como parâmetro
+def delete_user(name):
     db = current_app.config['db']
     db.users.delete_one({'name': name})
     return jsonify({'message': f'User {name} deleted successfully!'})
+
+# Rota para testar a conexão com o MongoDB
+@api.route('/test-mongo', methods=['GET'])
+def test_mongo():
+    try:
+        # Obtém a URL do MongoDB das variáveis de ambiente
+        mongo_url = os.getenv('MONGO_URL')
+        client = MongoClient(mongo_url)
+        # Testa a conexão ao banco de dados
+        client.server_info()  # Isso irá falhar se não puder se conectar
+        return "Conexão com MongoDB estabelecida com sucesso!", 200
+    except Exception as e:
+        return f"Erro ao conectar ao MongoDB: {str(e)}", 500
