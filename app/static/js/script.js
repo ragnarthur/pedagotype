@@ -46,7 +46,7 @@
                     textElement.innerText = data.text;  // Define o texto corretamente no HTML
                     currentTextId = data.id;  // Salva o ID do texto carregado
                     inputElement.value = '';  // Limpa o campo de entrada
-                    modalElement.style.display = 'none';  // Esconde o modal
+                    modalElement.classList.remove('show');  // Esconde o modal
                     startTime = null;
                     errorOccurred = false;  // Reinicia o estado de erro
                     isBlocked = false;  // Desbloqueia o teclado
@@ -175,11 +175,11 @@
 
     // Função para exibir o modal de pontuação
     function showScoreModal() {
-        modalElement.style.display = 'block';  // Exibe o modal
+        modalElement.classList.add('show');  // Exibe o modal
 
         // Fecha o modal automaticamente e carrega o próximo texto
         setTimeout(function () {
-            modalElement.style.display = 'none';  // Esconde o modal
+            modalElement.classList.remove('show');  // Esconde o modal
             fetchNextText(++currentIndex);  // Carrega o próximo texto
         }, 3000);  // Exibe o modal por 3 segundos
     }
