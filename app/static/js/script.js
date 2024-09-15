@@ -3,9 +3,9 @@
     const inputElement = document.getElementById("input");
     const modalElement = document.getElementById("scoreModal"); // Modal de pontuação
     const modalCurrentScoreElement = document.getElementById("modal-current-score");
+    const nextTextButton = document.getElementById("next-text-button"); // Botão "Próximo Texto"
 
     const resultElement = document.getElementById("result");
-
     const totalScoreElement = document.getElementById("total-score");
     const currentScoreElement = document.getElementById("current-score");
 
@@ -176,13 +176,13 @@
     // Função para exibir o modal de pontuação
     function showScoreModal() {
         modalElement.classList.add('show');  // Exibe o modal
-
-        // Fecha o modal automaticamente e carrega o próximo texto
-        setTimeout(function () {
-            modalElement.classList.remove('show');  // Esconde o modal
-            fetchNextText(++currentIndex);  // Carrega o próximo texto
-        }, 3000);  // Exibe o modal por 3 segundos
     }
+
+    // Função para carregar o próximo texto ao clicar no botão "Próximo Texto"
+    nextTextButton.addEventListener('click', function () {
+        modalElement.classList.remove('show');  // Esconde o modal
+        fetchNextText(++currentIndex);  // Carrega o próximo texto
+    });
 
     // Inicia o timer quando o usuário começa a digitar
     inputElement.addEventListener("input", function () {

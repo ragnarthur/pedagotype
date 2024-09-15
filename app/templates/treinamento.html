@@ -27,22 +27,22 @@
         </div>
 
         <!-- Modal de pontuação -->
-        <div class="modal" id="scoreModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                    <div class="modal-header" style="background-color: #3498DB; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                        <h5 class="modal-title" style="font-size: 1.5rem;">Parabéns!</h5>
-                    </div>
-                    <div class="modal-body" style="font-size: 1.2rem; color: #2C3E50;">
-                        <p>Você concluiu este texto com sucesso!</p>
-                        <p>Pontuação Atual: <span id="modal-current-score"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 1.1rem;">Próximo Texto</button>
-                    </div>
-                </div>
+<div class="modal" id="scoreModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <div class="modal-header" style="background-color: #3498DB; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                <h5 class="modal-title" style="font-size: 1.5rem;">Parabéns!</h5>
+            </div>
+            <div class="modal-body" style="font-size: 1.2rem; color: #2C3E50;">
+                <p>Você concluiu este texto com sucesso!</p>
+                <p>Pontuação Atual: <span id="modal-current-score"></span></p>
+            </div>
+            <div class="modal-footer">
+                <!-- Adicionado ID ao botão -->
+                <button type="button" class="btn btn-primary" id="next-text-button" style="font-size: 1.1rem;">Próximo Texto</button>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
