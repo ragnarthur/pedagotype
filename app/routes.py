@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, jsonify, request, session, current_app
 from .texts import get_next_uncompleted_text
 from .auth import login_required
+from pymongo import MongoClient
+import os
 
 main = Blueprint('main', __name__)
 
@@ -119,3 +121,16 @@ def get_last_text_id():
             return jsonify({'last_text_id': 0}), 200  # Se não houver last_text_id, retorna 0
     else:
         return jsonify({'error': 'Usuário não autenticado'}), 401
+
+
+@main.route('/test-mongo')
+def test_mongo():
+    try:
+        # Obtém a URL do MongoDB das variáveis de ambiente
+        mongo_url = os.getenv('MONGO_URL')
+        client = MongoClient(mongo_url)
+        # Testa a conexão ao banco de dados
+        client.server_info()  # Isso irá falhar se não puder se conectar
+        return "Conexão com MongoDB estabelecida com sucesso!", 200
+    except Exception as e:
+        return f"Erro ao conectar ao MongoDB: {str(e)}", 500
