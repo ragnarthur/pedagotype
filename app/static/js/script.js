@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+﻿document.addEventListener("DOMContentLoaded", function () {
     const textElement = document.getElementById("text");
     const inputElement = document.getElementById("input");
     const modalElement = document.getElementById("scoreModal"); // Modal de pontuação
@@ -176,11 +176,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Função para exibir o modal de pontuação
     function showScoreModal() {
         modalElement.classList.add('show');  // Exibe o modal
+        document.body.classList.add('no-scroll'); // Adiciona classe para desabilitar scroll
     }
 
     // Função para carregar o próximo texto ao clicar no botão "Próximo Texto"
     nextTextButton.addEventListener('click', function () {
         modalElement.classList.remove('show');  // Esconde o modal
+        document.body.classList.remove('no-scroll'); // Remove classe para habilitar scroll
         fetchNextText(++currentIndex);  // Carrega o próximo texto
     });
 
