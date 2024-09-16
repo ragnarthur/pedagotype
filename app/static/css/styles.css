@@ -1,4 +1,4 @@
-﻿/* ======================
+/* ======================
    Sobrescrevendo margens e paddings globais do Bootstrap
 ========================== */
 html, body {
@@ -569,6 +569,7 @@ h2 {
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     z-index: 1050; /* Certifique-se de que está acima de outros elementos */
+    overflow: hidden;
 }
 
 .modal.show {
@@ -576,6 +577,7 @@ h2 {
 }
 
 .modal-content {
+    margin: auto; 
     background-color: white;
     padding: 20px;
     border-radius: 15px;
