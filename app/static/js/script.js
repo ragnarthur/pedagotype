@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const textElement = document.getElementById("text");
     const inputElement = document.getElementById("input");
     const modalElement = document.getElementById("scoreModal"); // Modal de pontuação
