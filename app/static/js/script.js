@@ -1,6 +1,20 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    const textElement = document.getElementById("text");
     const inputElement = document.getElementById("input");
+
+    // Função para desabilitar Ctrl+C, Ctrl+V e o menu de contexto
+    inputElement.addEventListener('keydown', function (event) {
+        // Verifica se Ctrl+C ou Ctrl+V foram pressionados
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'c' || event.key === 'v')) {
+            event.preventDefault(); // Previne a ação padrão de copiar/colar
+        }
+    });
+
+    // Interceptar eventos de contexto (botão direito do mouse)
+    inputElement.addEventListener('contextmenu', function (event) {
+        event.preventDefault(); // Previne o menu de contexto (cópia/colagem)
+    });
+
+    const textElement = document.getElementById("text");
     const modalElement = document.getElementById("scoreModal"); // Modal de pontuação
     const modalCurrentScoreElement = document.getElementById("modal-current-score");
     const nextTextButton = document.getElementById("next-text-button"); // Botão "Próximo Texto"
@@ -203,7 +217,6 @@
         }
     });
 
-    
     // Função para atualizar o cronômetro
     function updateTimer() {
         const currentTime = new Date();
@@ -213,26 +226,14 @@
 
     // Impede ações de copiar, colar e cortar
     inputElement.addEventListener("paste", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Previne a ação de colar
     });
     
     inputElement.addEventListener("copy", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Previne a ação de copiar
     });
 
     inputElement.addEventListener("cut", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Previne a ação de cortar
     });
-});
-
-// Exemplo: Ajustar o tamanho da fonte conforme a largura da janela
-window.addEventListener('resize', function () {
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 768) {
-        document.documentElement.style.fontSize = '14px'; // Ajusta a fonte para dispositivos móveis
-    } else if (screenWidth < 1024) {
-        document.documentElement.style.fontSize = '16px'; // Ajusta a fonte para tablets
-    } else {
-        document.documentElement.style.fontSize = '18px'; // Ajusta a fonte para desktops
-    }
 });
