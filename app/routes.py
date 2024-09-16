@@ -17,12 +17,18 @@ def index():
 def treinamento():
     db = current_app.config['db']
     user = session.get('user')
-    
+
     # Verifica se o usuário tem um last_text_id salvo no banco de dados
     user_data = db.users.find_one({'email': user})
     last_text_id = user_data.get('last_text_id', 0)  # Se não houver, começa do texto 0
 
-    return render_template('treinamento.html', last_text_id=last_text_id)
+    # Conta o total de textos disponíveis
+    total_texts = db.texts.count_documents({})  # Ajuste isso conforme a estrutura do seu banco
+
+    # Verifica se o usuário concluiu todos os textos
+    concluiu_todos_textos = last_text_id >= total_texts
+
+    return render_template('treinamento.html', last_text_id=last_text_id, concluiu_todos_textos=concluiu_todos_textos)
 
 
 # Rota para obter o próximo texto (pode ser protegida se necessário)

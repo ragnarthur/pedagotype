@@ -90,15 +90,27 @@
             // Seleciona todos os alertas que estão visíveis
             const alerts = document.querySelectorAll('.custom-alert');
     
-            // Configura um timeout para remover as mensagens após 1.3 segundos
-            alerts.forEach(alert => {
+             // Configura um timeout para remover as mensagens após 1.3 segundos
+             alerts.forEach(alert => {
                 setTimeout(function () {
                     alert.classList.add('fade');  // Adiciona uma classe para iniciar a animação de desaparecimento
                     setTimeout(() => alert.remove(), 300);  // Remove o alerta do DOM após a animação
                 }, 2900);  // Tempo de 2.9 segundos antes do desaparecimento
             });
+
+            // Lógica para esconder/mostrar a navbar
+            const navbar = document.querySelector('.navbar');
+
+            // Mostra a navbar quando o mouse está sobre ela
+            navbar.addEventListener('mouseenter', function () {
+                navbar.style.top = '0';  // Mostra a navbar
+            });
+
+            // Esconde a navbar quando o mouse sai da área da navbar
+            navbar.addEventListener('mouseleave', function () {
+                navbar.style.top = '-60px';  // Ajuste este valor para altura da navbar
+            });
         });
     </script>
-    
 </body>
 </html>

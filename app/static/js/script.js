@@ -58,6 +58,15 @@
             .catch(error => console.error("Erro ao carregar o texto:", error));
     }
 
+    // Função para exibir a mensagem final quando todos os textos forem concluídos
+    function showFinalMessage() {
+        textElement.innerText = "Você concluiu todos os desafios! Parabéns... aguarde nossa próxima atualização de textos... Em breve!";
+        inputElement.value = '';  // Limpa o campo de entrada
+        inputElement.disabled = true;  // Desabilita o campo de entrada
+        modalElement.classList.remove('show');  // Certifique-se de que o modal esteja escondido
+        clearInterval(timerInterval);  // Para o timer
+    }
+
     // Função para capturar e processar a entrada do usuário
     inputElement.addEventListener("input", function (event) {
         const inputText = inputElement.value;
@@ -194,10 +203,36 @@
         }
     });
 
+    
     // Função para atualizar o cronômetro
     function updateTimer() {
         const currentTime = new Date();
         const timeElapsed = Math.floor((currentTime - startTime) / 1000);
         resultElement.innerText = `Tempo: ${timeElapsed} segundos`;
+    }
+
+    // Impede ações de copiar, colar e cortar
+    inputElement.addEventListener("paste", function (event) {
+        event.preventDefault();
+    });
+    
+    inputElement.addEventListener("copy", function (event) {
+        event.preventDefault();
+    });
+
+    inputElement.addEventListener("cut", function (event) {
+        event.preventDefault();
+    });
+});
+
+// Exemplo: Ajustar o tamanho da fonte conforme a largura da janela
+window.addEventListener('resize', function () {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        document.documentElement.style.fontSize = '14px'; // Ajusta a fonte para dispositivos móveis
+    } else if (screenWidth < 1024) {
+        document.documentElement.style.fontSize = '16px'; // Ajusta a fonte para tablets
+    } else {
+        document.documentElement.style.fontSize = '18px'; // Ajusta a fonte para desktops
     }
 });
