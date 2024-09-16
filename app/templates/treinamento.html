@@ -10,48 +10,49 @@
             Comece a praticar - <span style="color: #1ABC9C;">PedagoType</span>
         </h2>
 
-        <!-- Exibição do texto e input de digitação unificados no mesmo box -->
-        <div class="text-box">
-            {% if concluiu_todos_textos %}
-                <!-- Mensagem especial se o usuário concluiu todos os textos -->
-                <p class="lead" style="font-size: 1.5rem; color: #2C3E50; text-align: center;">
+        {% if user_completed_all_texts %}
+            <!-- Mensagem especial quando o usuário concluiu todos os textos -->
+            <div class="text-box">
+                <p style="font-size: 1.5rem; color: #2C3E50; text-align: center;">
                     Você concluiu todos os desafios! Aguarde a atualização em breve!
                 </p>
-            {% else %}
-                <!-- Exibe o próximo texto se o usuário não concluiu todos os textos -->
+            </div>
+        {% else %}
+            <!-- Exibição do texto e input de digitação unificados no mesmo box -->
+            <div class="text-box">
                 <p id="text" data-current-index="0" class="lead" style="font-size: 1.5rem; color: #2C3E50; text-align: justify;">
                     Carregando texto...
                 </p>
                 <!-- Campo de entrada para digitação com quebra de linhas -->
                 <textarea id="input" class="text-input" placeholder="Digite aqui o texto acima..." autocomplete="off" rows="5"></textarea>
-            {% endif %}
-        </div>
+            </div>
 
-        <!-- Exibição de resultados -->
-        <div id="result" class="my-4 p-3" style="background-color: #eef2f7; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
-            <p style="font-size: 1.3rem; color: #2ECC71;" class="hidden-score">Pontuação Atual: <span id="current-score">0</span></p>
-            <p style="font-size: 1.3rem; color: #3498DB;" class="hidden-score">Pontuação Total: <span id="total-score">0</span></p>
-            <p id="final-score"></p>
-        </div>
+            <!-- Exibição de resultados -->
+            <div id="result" class="my-4 p-3" style="background-color: #eef2f7; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+                <p style="font-size: 1.3rem; color: #2ECC71;" class="hidden-score">Pontuação Atual: <span id="current-score">0</span></p>
+                <p style="font-size: 1.3rem; color: #3498DB;" class="hidden-score">Pontuação Total: <span id="total-score">0</span></p>
+                <p id="final-score"></p>
+            </div>
 
-        <!-- Modal de pontuação -->
-        <div class="modal" id="scoreModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                    <div class="modal-header" style="background-color: #3498DB; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                        <h5 class="modal-title" style="font-size: 1.5rem;">Parabéns!</h5>
-                    </div>
-                    <div class="modal-body" style="font-size: 1.2rem; color: #2C3E50;">
-                        <p>Você concluiu este texto com sucesso!</p>
-                        <p>Pontuação Atual: <span id="modal-current-score"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- Adicionado ID ao botão -->
-                        <button type="button" class="btn btn-primary" id="next-text-button" style="font-size: 1.1rem;">Próximo Texto</button>
+            <!-- Modal de pontuação -->
+            <div class="modal" id="scoreModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                        <div class="modal-header" style="background-color: #3498DB; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                            <h5 class="modal-title" style="font-size: 1.5rem;">Parabéns!</h5>
+                        </div>
+                        <div class="modal-body" style="font-size: 1.2rem; color: #2C3E50;">
+                            <p>Você concluiu este texto com sucesso!</p>
+                            <p>Pontuação Atual: <span id="modal-current-score"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Adicionado ID ao botão -->
+                            <button type="button" class="btn btn-primary" id="next-text-button" style="font-size: 1.1rem;">Próximo Texto</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

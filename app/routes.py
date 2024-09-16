@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, session, current_app
 from .texts import get_next_uncompleted_text
 from .auth import login_required
+from .texts import TEXTS  # Importe 'TEXTS' do módulo 'texts.py'
 from pymongo import MongoClient
 import os
 
@@ -18,17 +19,17 @@ def treinamento():
     db = current_app.config['db']
     user = session.get('user')
 
-    # Verifica se o usuário tem um last_text_id salvo no banco de dados
+    # Obter dados do usuário, incluindo os textos concluídos
     user_data = db.users.find_one({'email': user})
-    last_text_id = user_data.get('last_text_id', 0)  # Se não houver, começa do texto 0
+    completed_text_ids = user_data.get('completed_text_ids', [])  # Lista de IDs dos textos concluídos
 
-    # Conta o total de textos disponíveis
-    total_texts = db.texts.count_documents({})  # Ajuste isso conforme a estrutura do seu banco
+    # Defina o total de textos disponíveis
+    total_texts_available = len(TEXTS)  # Use o tamanho da lista de textos
 
     # Verifica se o usuário concluiu todos os textos
-    concluiu_todos_textos = last_text_id >= total_texts
+    user_completed_all_texts = len(completed_text_ids) >= total_texts_available
 
-    return render_template('treinamento.html', last_text_id=last_text_id, concluiu_todos_textos=concluiu_todos_textos)
+    return render_template('treinamento.html', user_completed_all_texts=user_completed_all_texts)
 
 
 # Rota para obter o próximo texto (pode ser protegida se necessário)
